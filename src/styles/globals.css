@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles */
+* {
+  @apply transition-colors duration-300;
+}
+
+html {
+  @apply scroll-smooth;
+}
+
+body {
+  background: linear-gradient(to bottom, #0a0e27, #0a0e27, #1e293b);
+  @apply text-white font-sans;
+}
+
+/* Glassmorphism utility */
+.glass {
+  @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-lg;
+}
+
+.glass-hover {
+  @apply glass hover:bg-white/20 hover:border-white/30 transition-all duration-300;
+}
+
+/* Neon effects */
+.neon-border {
+  @apply border-2 border-neon-cyan shadow-neon;
+}
+
+.neon-border-orange {
+  @apply border-2 border-neon-orange shadow-neon-orange;
+}
+
+.neon-text {
+  background: linear-gradient(135deg, #00f0ff 0%, #ff6b35 100%);
+  @apply bg-clip-text text-transparent;
+}
+
+.neon-glow {
+  @apply shadow-neon-glow;
+}
+
+/* Gradient text utilities */
+.gradient-text {
+  background: linear-gradient(135deg, #00f0ff 0%, #ff6b35 100%);
+  @apply bg-clip-text text-transparent;
+}
+
+.gradient-text-reverse {
+  background: linear-gradient(135deg, #ff6b35 0%, #00f0ff 100%);
+  @apply bg-clip-text text-transparent;
+}
+
+/* Smooth scroll */
+@supports (scroll-behavior: smooth) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Selection styles */
+::selection {
+  @apply bg-neon-cyan bg-opacity-30 text-white;
+}
+
+/* Focus visible for accessibility */
+:focus-visible {
+  @apply outline-2 outline-neon-cyan outline-offset-2;
+}
