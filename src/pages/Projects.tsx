@@ -1,135 +1,12 @@
 import { useState } from 'react';
+import ReactMarkdown from 'react-markdown';
 import { useLanguage } from '../hooks/useLanguage';
 import { ExternalLink, Code, X, Globe, GitBranch } from 'lucide-react';
+import { SKILLS_DB, projects, type Project, type SkillKey } from '../data';
 
-// Définition des skills avec indexation
-const SKILLS_DB = {
-  react: { name: 'React', color: 'from-cyan-500/20 to-cyan-500/10', border: 'border-cyan-500/30' },
-  nodejs: { name: 'Node.js', color: 'from-orange-500/20 to-orange-500/10', border: 'border-orange-500/30' },
-  langchain: { name: 'LangChain', color: 'from-purple-500/20 to-purple-500/10', border: 'border-purple-500/30' },
-  postgresql: { name: 'PostgreSQL', color: 'from-blue-500/20 to-blue-500/10', border: 'border-blue-500/30' },
-  websocket: { name: 'WebSocket', color: 'from-green-500/20 to-green-500/10', border: 'border-green-500/30' },
-  python: { name: 'Python', color: 'from-cyan-500/20 to-cyan-500/10', border: 'border-cyan-500/30' },
-  docker: { name: 'Docker', color: 'from-blue-500/20 to-blue-500/10', border: 'border-blue-500/30' },
-  mongodb: { name: 'MongoDB', color: 'from-green-500/20 to-green-500/10', border: 'border-green-500/30' },
-  aws: { name: 'AWS', color: 'from-orange-500/20 to-orange-500/10', border: 'border-orange-500/30' },
-  grafana: { name: 'Grafana', color: 'from-orange-500/20 to-orange-500/10', border: 'border-orange-500/30' },
-  typescript: { name: 'TypeScript', color: 'from-blue-500/20 to-blue-500/10', border: 'border-blue-500/30' },
-  fastapi: { name: 'FastAPI', color: 'from-cyan-500/20 to-cyan-500/10', border: 'border-cyan-500/30' },
-} as const;
-
-type SkillKey = keyof typeof SKILLS_DB;
-
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  fullDescription: string;
-  image: string;
-  technologies: SkillKey[];
-  github?: string;
-  gitlab?: string;
-  website?: string;
-  demo?: string;
-  category: 'professional' | 'personal';
-}
-
-const projects: Project[] = [
-  {
-    id: 1,
-    title: 'AI Chat Assistant',
-    description: 'Assistant IA conversationnel avec LangChain et OpenAI. Interface React avec streaming en temps réel.',
-    fullDescription: `Un assistant IA conversationnel complet et performant.
-
-🎯 Fonctionnalités principales:
-• Streaming des réponses en temps réel
-• Support du contexte conversationnel persistant
-• Intégration avec OpenAI et autres LLMs
-• Interface utilisateur moderne et réactive
-• Historique complet de conversations
-• Authentification sécurisée
-
-🏗️ Architecture technique:
-• Frontend: React avec Tailwind CSS et animations
-• Backend: Node.js/Express avec WebSocket
-• Base de données: PostgreSQL pour l'historique
-• Déploiement: Docker sur infrastructure cloud
-• Monitoring: ELK Stack pour les logs
-
-📊 Performances:
-• Temps de réponse < 200ms
-• Support 1000+ utilisateurs concurrents
-• Uptime 99.9%`,
-    image: 'https://images.unsplash.com/photo-1677442d019cecf8d29b36b9cf5f9e6e3d5f6d9d?w=1000&q=80',
-    technologies: ['react', 'nodejs', 'langchain', 'postgresql', 'websocket', 'typescript', 'docker'],
-    github: 'https://github.com/mathieu/ai-chat',
-    website: 'https://ai-chat-demo.vercel.app',
-    category: 'personal',
-  },
-  {
-    id: 2,
-    title: 'Portfolio Analytics',
-    description: 'Dashboard d\'analyse de performance avec visualisations interactive. Docker + microservices.',
-    fullDescription: `Plateforme d'analytics complète pour suivre et analyser les performances.
-
-📈 Fonctionnalités:
-• Dashboards temps réel personnalisables
-• Graphiques interactifs avec Chart.js
-• Filtrage avancé par période et catégorie
-• Export en PDF/CSV
-• Système d'alertes et notifications
-• Comparaison de périodes
-
-🛠️ Stack technique:
-• Frontend: React + TypeScript + Tailwind
-• Backend: Python FastAPI
-• Cache: Redis pour les requêtes fréquentes
-• Database: PostgreSQL avec optimisations
-• DevOps: Docker + Kubernetes
-• Monitoring: Prometheus + Grafana
-
-⚡ Optimisations:
-• Caching agressif (Redis)
-• Pagination côté serveur
-• Compression des données
-• CDN pour les assets statiques`,
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1000&q=80',
-    technologies: ['react', 'python', 'fastapi', 'postgresql', 'docker', 'grafana', 'typescript'],
-    github: 'https://github.com/mathieu/portfolio-analytics',
-    gitlab: 'https://gitlab.com/mathieu/portfolio-analytics',
-    category: 'professional',
-  },
-  {
-    id: 3,
-    title: 'Real-time Collaboration App',
-    description: 'Plateforme de collaboration temps réel avec sync cloud. Stack fullstack moderne.',
-    fullDescription: `Application collaborative permettant à plusieurs utilisateurs de travailler ensemble en temps réel.
-
-🤝 Fonctionnalités collaboratives:
-• Synchronisation en temps réel via WebSocket
-• Édition collaborative de documents
-• Curseurs et présence des utilisateurs
-• Versioning et historique complet
-• Commentaires inline
-• Partage de fichiers
-
-☁️ Cloud & Storage:
-• AWS S3 pour les fichiers
-• CloudFlare CDN pour les assets
-• MongoDB pour les données collaboratives
-• Transactions ACID
-
-🔒 Sécurité:
-• Authentification OAuth2
-• Chiffrement end-to-end
-• Permissions granulaires
-• Audit trail complet`,
-    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=1000&q=80',
-    technologies: ['react', 'nodejs', 'websocket', 'mongodb', 'aws', 'typescript', 'docker'],
-    website: 'https://collab-app.demo.com',
-    category: 'personal',
-  },
-];
+// Données importées depuis ../data
+// const projects est importé depuis '../data/projects'
+// const SKILLS_DB est importé depuis '../data/skills'
 
 interface ProjectModalProps {
   project: Project | null;
@@ -162,8 +39,8 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
         {/* Image */}
         <div className="relative w-full h-64 overflow-hidden">
           <img
-            src={project.image}
-            alt={project.title}
+            src={project.image.src}
+            alt={project.image.alt}
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-900" />
@@ -185,9 +62,22 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
           {/* Full Description */}
           <div className="space-y-3">
             <h3 className="text-lg font-semibold text-white">À propos</h3>
-            <p className="text-white/70 whitespace-pre-wrap leading-relaxed text-sm">
-              {project.fullDescription}
-            </p>
+            <div className="text-white/70 leading-relaxed space-y-3">
+              <ReactMarkdown
+                components={{
+                  h1: ({ node, ...props }) => <h1 className="text-2xl font-bold text-white mt-6 mb-3" {...props} />,
+                  h2: ({ node, ...props }) => <h2 className="text-xl font-bold text-white/90 mt-5 mb-2" {...props} />,
+                  h3: ({ node, ...props }) => <h3 className="text-lg font-semibold text-white/80 mt-4 mb-2" {...props} />,
+                  p: ({ node, ...props }) => <p className="text-white/70 mb-3 text-justify" {...props} />,
+                  ul: ({ node, ...props }) => <ul className="list-disc list-inside space-y-1 mb-3 text-white/70 text-justify" {...props} />,
+                  li: ({ node, ...props }) => <li className="ml-2" {...props} />,
+                  strong: ({ node, ...props }) => <strong className="text-white font-semibold" {...props} />,
+                  em: ({ node, ...props }) => <em className="text-white/80 italic" {...props} />,
+                }}
+              >
+                {project.fullDescription}
+              </ReactMarkdown>
+            </div>
           </div>
 
           {/* Skills */}
@@ -292,8 +182,8 @@ export function Projects() {
               {/* Project Image Thumbnail */}
               <div className="relative h-48 rounded-t-lg overflow-hidden mb-0">
                 <img
-                  src={project.image}
-                  alt={project.title}
+                  src={project.image.src}
+                  alt={project.image.alt}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60" />
