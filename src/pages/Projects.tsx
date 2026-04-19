@@ -48,14 +48,22 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
 
         {/* Content */}
         <div className="p-6 space-y-6">
-          {/* Category Badge */}
+          {/* Category Badge - 4 Options */}
           <div className="flex gap-2">
             <span className={`px-3 py-1 rounded-full text-xs font-semibold border ${
-              project.category === 'professional'
-                ? 'bg-neon-orange/10 border-neon-orange/50 text-neon-orange'
-                : 'bg-neon-cyan/10 border-neon-cyan/50 text-neon-cyan'
+              {
+                professionnel: 'bg-neon-orange/10 border-neon-orange/50 text-neon-orange',
+                personnel: 'bg-neon-cyan/10 border-neon-cyan/50 text-neon-cyan',
+                universitaire: 'bg-purple-500/10 border-purple-500/30 text-purple-400',
+                associatif: 'bg-green-500/10 border-green-500/30 text-green-400',
+              }[project.category]
             }`}>
-              {project.category === 'professional' ? '💼 Professionnel' : '🎨 Personnel'}
+              {{
+                professionnel: '💼 Professionnel',
+                personnel: '🎨 Personnel',
+                universitaire: '🎓 Universitaire',
+                associatif: '🤝 Associatif',
+              }[project.category]}
             </span>
           </div>
 

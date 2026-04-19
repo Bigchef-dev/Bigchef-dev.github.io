@@ -24,7 +24,7 @@ export interface Project {
   gitlab?: string;
   website?: string;
   demo?: string;
-  category: 'professional' | 'personal';
+  category: 'associatif' | 'universitaire' | 'professionnel' | 'personnel';
 }
 
 /**
@@ -70,7 +70,7 @@ Un assistant IA conversationnel complet et performant.
     technologies: ['react', 'nodejs', 'langchain', 'postgresql', 'websocket', 'typescript', 'docker'],
     github: 'https://github.com/mathieu/ai-chat',
     website: 'https://ai-chat-demo.vercel.app',
-    category: 'personal',
+    category: 'personnel',
   },
   {
     id: 2,
@@ -113,7 +113,7 @@ Plateforme d'analytics complète pour suivre et analyser les performances.
     technologies: ['react', 'python', 'fastapi', 'postgresql', 'docker', 'grafana', 'typescript'],
     github: 'https://github.com/mathieu/portfolio-analytics',
     gitlab: 'https://gitlab.com/mathieu/portfolio-analytics',
-    category: 'professional',
+    category: 'professionnel',
   },
   {
     id: 3,
@@ -153,6 +153,6 @@ Application collaborative permettant à plusieurs utilisateurs de travailler ens
     },
     technologies: ['react', 'nodejs', 'websocket', 'mongodb', 'aws', 'typescript', 'docker'],
     website: 'https://collab-app.demo.com',
-    category: 'personal',
+    category: 'personnel',
   },
 ];
