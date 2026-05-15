@@ -34,10 +34,10 @@ export function Contact() {
       <div className="max-w-2xl mx-auto px-6">
         {/* Title */}
         <div className="text-center mb-16">
-          <h1 className="text-5xl font-black gradient-text mb-4">
+          <h1 className="text-5xl font-black text-gray-900 mb-4">
             {t('contact.title')}
           </h1>
-          <p className="text-xl text-white/60">
+          <p className="text-xl text-gray-500">
             {t('contact.description')}
           </p>
         </div>
@@ -46,7 +46,7 @@ export function Contact() {
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-semibold mb-2 text-neon-cyan">
+              <label className="block text-sm font-semibold mb-2 text-teal-600">
                 {t('contact.form.name')}
               </label>
               <input
@@ -55,13 +55,13 @@ export function Contact() {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 rounded-lg glass border border-white/10 focus:border-neon-cyan focus:outline-none focus:ring-2 focus:ring-neon-cyan/20 transition-all bg-white/5 text-white placeholder-white/30"
+                className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/20 transition-all bg-white text-gray-900 placeholder-gray-400"
                 placeholder="Votre nom"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-semibold mb-2 text-neon-cyan">
+              <label className="block text-sm font-semibold mb-2 text-teal-600">
                 {t('contact.form.email')}
               </label>
               <input
@@ -70,13 +70,13 @@ export function Contact() {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 rounded-lg glass border border-white/10 focus:border-neon-cyan focus:outline-none focus:ring-2 focus:ring-neon-cyan/20 transition-all bg-white/5 text-white placeholder-white/30"
+                className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/20 transition-all bg-white text-gray-900 placeholder-gray-400"
                 placeholder="votre@email.com"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-semibold mb-2 text-neon-cyan">
+              <label className="block text-sm font-semibold mb-2 text-teal-600">
                 {t('contact.form.message')}
               </label>
               <textarea
@@ -85,14 +85,14 @@ export function Contact() {
                 onChange={handleChange}
                 required
                 rows={5}
-                className="w-full px-4 py-3 rounded-lg glass border border-white/10 focus:border-neon-cyan focus:outline-none focus:ring-2 focus:ring-neon-cyan/20 transition-all bg-white/5 text-white placeholder-white/30 resize-none"
+                className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/20 transition-all bg-white text-gray-900 placeholder-gray-400 resize-none"
                 placeholder="Votre message..."
               />
             </div>
 
             <Button
               type="submit"
-              variant="neon"
+              variant="primary"
               disabled={status === 'sending'}
               className="w-full flex items-center justify-center gap-2"
             >
@@ -104,7 +104,7 @@ export function Contact() {
             </Button>
 
             {status === 'success' && (
-              <div className="p-4 rounded-lg bg-green-500/10 border border-green-500/30 text-green-400 text-sm text-center">
+              <div className="p-4 rounded-lg bg-teal-50 border border-teal-200 text-teal-700 text-sm text-center">
                 ✓ {t('contact.form.success')}
               </div>
             )}
@@ -113,18 +113,18 @@ export function Contact() {
           {/* Social Links */}
           <div className="flex flex-col justify-between">
             <div className="space-y-4 mb-8">
-              <h3 className="text-xl font-bold text-neon-cyan mb-6">
+              <h3 className="text-xl font-bold text-teal-700 mb-6">
                 Connectez-vous
               </h3>
 
               <a
                 href="mailto:hello@mathieu.dev"
-                className="flex items-center gap-4 p-4 rounded-lg glass glass-hover neon-border hover:shadow-neon-glow transition-all group"
+                className="flex items-center gap-4 p-4 rounded-lg border border-gray-200 hover:border-teal-300 hover:bg-teal-50 transition-all group"
               >
-                <Mail size={24} className="text-neon-cyan group-hover:scale-110 transition-transform" />
+                <Mail size={24} className="text-teal-500 group-hover:scale-110 transition-transform" />
                 <div>
-                  <p className="font-semibold text-white">Email</p>
-                  <p className="text-sm text-white/60">hello@mathieu.dev</p>
+                  <p className="font-semibold text-gray-900">Email</p>
+                  <p className="text-sm text-gray-500">hello@mathieu.dev</p>
                 </div>
               </a>
 
@@ -132,12 +132,12 @@ export function Contact() {
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-4 p-4 rounded-lg glass glass-hover neon-border-orange hover:shadow-neon-orange transition-all group"
+                className="flex items-center gap-4 p-4 rounded-lg border border-gray-200 hover:border-teal-300 hover:bg-teal-50 transition-all group"
               >
-                <User size={24} className="text-neon-orange group-hover:scale-110 transition-transform" />
+                <User size={24} className="text-teal-500 group-hover:scale-110 transition-transform" />
                 <div>
-                  <p className="font-semibold text-white">LinkedIn</p>
-                  <p className="text-sm text-white/60">linkedin.com/in/mathieu</p>
+                  <p className="font-semibold text-gray-900">LinkedIn</p>
+                  <p className="text-sm text-gray-500">linkedin.com/in/mathieu</p>
                 </div>
               </a>
 
@@ -145,12 +145,12 @@ export function Contact() {
                 href="https://github.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-4 p-4 rounded-lg glass glass-hover neon-border hover:shadow-neon-glow transition-all group"
+                className="flex items-center gap-4 p-4 rounded-lg border border-gray-200 hover:border-teal-300 hover:bg-teal-50 transition-all group"
               >
-                <Code size={24} className="text-neon-cyan group-hover:scale-110 transition-transform" />
+                <Code size={24} className="text-teal-500 group-hover:scale-110 transition-transform" />
                 <div>
-                  <p className="font-semibold text-white">GitHub</p>
-                  <p className="text-sm text-white/60">github.com/mathieu</p>
+                  <p className="font-semibold text-gray-900">GitHub</p>
+                  <p className="text-sm text-gray-500">github.com/mathieu</p>
                 </div>
               </a>
             </div>

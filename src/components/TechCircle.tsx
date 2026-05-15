@@ -1,19 +1,18 @@
-import { 
-  Code2, 
-  GitBranch, 
-  Zap,
+import {
+  Code2,
+  GitBranch,
   Brain,
   Database,
   Server
 } from 'lucide-react';
 
 const technologies = [
-  { name: 'React', icon: Code2, color: '#00f0ff' },
-  { name: 'Node.js', icon: Server, color: '#ff6b35' },
-  { name: 'Python', icon: Code2, color: '#00f0ff' },
-  { name: 'LangChain', icon: Brain, color: '#ff6b35' },
-  { name: 'PostgreSQL', icon: Database, color: '#00f0ff' },
-  { name: 'Docker', icon: GitBranch, color: '#ff6b35' },
+  { name: 'React', icon: Code2 },
+  { name: 'Node.js', icon: Server },
+  { name: 'Python', icon: Code2 },
+  { name: 'LangChain', icon: Brain },
+  { name: 'PostgreSQL', icon: Database },
+  { name: 'Docker', icon: GitBranch },
 ];
 
 export function TechCircle() {
@@ -22,16 +21,15 @@ export function TechCircle() {
       {/* Central circle */}
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="relative z-10 text-center">
-          <h1 className="text-5xl font-black gradient-text mb-3">
+          <h1 className="text-5xl font-black text-gray-900 mb-3">
             Mathéo Guinche
           </h1>
-          <p className="text-xl text-neon-cyan font-semibold">
+          <p className="text-xl text-teal-600 font-semibold">
             Fullstack & AI Engineer
           </p>
         </div>
-        {/* Animated border circle */}
-        <div className="absolute inset-0 rounded-full border-2 border-neon-cyan/30 animate-spin" style={{ animationDuration: '20s' }} />
-        <div className="absolute inset-4 rounded-full border-2 border-neon-orange/30 animate-spin" style={{ animationDuration: '25s', animationDirection: 'reverse' }} />
+        {/* Single thin gray ring */}
+        <div className="absolute inset-2 rounded-full border border-gray-200" />
       </div>
 
       {/* Tech icons in circle */}
@@ -43,7 +41,6 @@ export function TechCircle() {
           const y = Math.sin(angle) * radius;
 
           const IconComponent = tech.icon;
-          const isOrange = tech.color === '#ff6b35';
 
           return (
             <div
@@ -53,21 +50,11 @@ export function TechCircle() {
                 transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
               }}
             >
-              <div
-                className={`p-3 rounded-full glass ${
-                  isOrange ? 'neon-border-orange' : 'neon-border'
-                } hover:shadow-neon-glow transition-all duration-300 animate-float group cursor-pointer`}
-                style={{
-                  animationDelay: `${index * 0.1}s`,
-                }}
-              >
-                <IconComponent
-                  size={24}
-                  style={{ color: tech.color }}
-                  className="group-hover:scale-110 transition-transform"
-                />
-              </div>
-              <p className="text-xs text-center mt-2 text-white/70 font-medium">
+              <IconComponent
+                size={24}
+                className="text-teal-500"
+              />
+              <p className="text-xs text-center mt-2 text-gray-500 font-medium">
                 {tech.name}
               </p>
             </div>

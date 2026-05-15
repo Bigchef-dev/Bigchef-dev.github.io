@@ -11,7 +11,7 @@ function App() {
   return (
     <LanguageProvider>
       <BrowserRouter>
-        <div className="relative min-h-screen bg-neon-dark">
+        <div className="relative min-h-screen bg-white">
           <Background />
           <Header />
           <Routes>

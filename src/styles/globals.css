@@ -12,46 +12,22 @@ html {
 }
 
 body {
-  background: linear-gradient(to bottom, #0a0e27, #0a0e27, #1e293b);
-  @apply text-white font-sans;
+  background: #ffffff;
+  @apply text-gray-900 font-sans;
 }
 
 /* Glassmorphism utility */
 .glass {
-  @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-lg;
+  @apply bg-white/80 backdrop-blur-md border border-gray-200 rounded-lg;
 }
 
 .glass-hover {
-  @apply glass hover:bg-white/20 hover:border-white/30 transition-all duration-300;
-}
-
-/* Neon effects */
-.neon-border {
-  @apply border-2 border-neon-cyan shadow-neon;
-}
-
-.neon-border-orange {
-  @apply border-2 border-neon-orange shadow-neon-orange;
-}
-
-.neon-text {
-  background: linear-gradient(135deg, #00f0ff 0%, #ff6b35 100%);
-  @apply bg-clip-text text-transparent;
-}
-
-.neon-glow {
-  @apply shadow-neon-glow;
+  @apply glass hover:bg-white/90 hover:border-gray-300 transition-all duration-300;
 }
 
 /* Gradient text utilities */
 .gradient-text {
-  background: linear-gradient(135deg, #00f0ff 0%, #ff6b35 100%);
-  @apply bg-clip-text text-transparent;
-}
-
-.gradient-text-reverse {
-  background: linear-gradient(135deg, #ff6b35 0%, #00f0ff 100%);
-  @apply bg-clip-text text-transparent;
+  @apply text-teal-700;
 }
 
 /* Smooth scroll */
@@ -63,10 +39,10 @@ body {
 
 /* Selection styles */
 ::selection {
-  @apply bg-neon-cyan bg-opacity-30 text-white;
+  @apply bg-teal-500 bg-opacity-20 text-teal-900;
 }
 
 /* Focus visible for accessibility */
 :focus-visible {
-  @apply outline-2 outline-neon-cyan outline-offset-2;
+  @apply outline-2 outline-teal-500 outline-offset-2;
 }

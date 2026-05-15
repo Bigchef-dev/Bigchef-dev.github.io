@@ -18,7 +18,7 @@ export interface Project {
   title: string;
   description: string;
   fullDescription: string;
-  image: ProjectImage;
+  images: ProjectImage[];
   technologies: SkillKey[];
   github?: string;
   gitlab?: string;
@@ -61,12 +61,20 @@ Un assistant IA conversationnel complet et performant.
 - Temps de réponse < 200ms
 - Support 1000+ utilisateurs concurrents
 - Uptime 99.9%`,
-    image: {
-      src: 'https://images.unsplash.com/photo-1677442d019cecf8d29b36b9cf5f9e6e3d5f6d9d?w=1000&q=80',
-      alt: 'AI Chat Assistant - Interface conversationnelle',
-      width: 1000,
-      height: 600,
-    },
+    images: [
+      {
+        src: 'https://images.unsplash.com/photo-1677442d019cecf8d29b36b9cf5f9e6e3d5f6d9d?w=1000&q=80',
+        alt: 'AI Chat Assistant - Interface conversationnelle',
+        width: 1000,
+        height: 600,
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1677442d019cecf8d29b36b9cf5f9e6e3d5f6d9d?w=800&q=80',
+        alt: 'AI Chat Assistant - Dashboard',
+        width: 800,
+        height: 600,
+      },
+    ],
     technologies: ['react', 'nodejs', 'langchain', 'postgresql', 'websocket', 'typescript', 'docker'],
     github: 'https://github.com/mathieu/ai-chat',
     website: 'https://ai-chat-demo.vercel.app',
@@ -74,8 +82,8 @@ Un assistant IA conversationnel complet et performant.
   },
   {
     id: 2,
-    title: 'Portfolio Analytics',
-    description: 'Dashboard d\'analyse de performance avec visualisations interactive. Docker + microservices.',
+    title: 'Aaron le Mercenaire',
+    description: 'Un écosystème de Data Stream Processing, transformer et valoriser des flux de données pour trouver les meilleures opportunités pour les joueurs.',
     fullDescription: `# Portfolio Analytics
 
 Plateforme d'analytics complète pour suivre et analyser les performances.
@@ -104,13 +112,21 @@ Plateforme d'analytics complète pour suivre et analyser les performances.
 - Pagination côté serveur
 - Compression des données
 - CDN pour les assets statiques`,
-    image: {
-      src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1000&q=80',
-      alt: 'Portfolio Analytics - Dashboard interactif',
-      width: 1000,
-      height: 600,
-    },
-    technologies: ['react', 'python', 'fastapi', 'postgresql', 'docker', 'grafana', 'typescript'],
+    images: [
+      {
+        src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1000&q=80',
+        alt: 'Portfolio Analytics - Dashboard interactif',
+        width: 1000,
+        height: 600,
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
+        alt: 'Portfolio Analytics - Graphiques',
+        width: 800,
+        height: 600,
+      },
+    ],
+    technologies: ['react', 'python', 'api', 'postgresql', 'docker', 'grafana', 'typescript'],
     github: 'https://github.com/mathieu/portfolio-analytics',
     gitlab: 'https://gitlab.com/mathieu/portfolio-analytics',
     category: 'professionnel',
@@ -145,14 +161,22 @@ Application collaborative permettant à plusieurs utilisateurs de travailler ens
 - Chiffrement end-to-end
 - Permissions granulaires
 - Audit trail complet`,
-    image: {
-      src: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=1000&q=80',
-      alt: 'Real-time Collaboration App - Collaboration en temps reel',
-      width: 1000,
-      height: 600,
-    },
-    technologies: ['react', 'nodejs', 'websocket', 'mongodb', 'aws', 'typescript', 'docker'],
-    website: 'https://collab-app.demo.com',
+    images: [
+      {
+        src: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=1000&q=80',
+        alt: 'Real-time Collaboration App - Collaboration en temps reel',
+        width: 1000,
+        height: 600,
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80',
+        alt: 'Real-time Collaboration App - Edition collaborative',
+        width: 800,
+        height: 600,
+      },
+    ],
+    technologies: ['vue', 'nodejs', 'websocket', 'mongodb', 'aws', 'typescript', 'docker'],
+    website: 'https://aaronlem.ovh',
     category: 'personnel',
   },
 ];

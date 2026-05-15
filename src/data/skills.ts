@@ -12,64 +12,74 @@ export interface SkillDefinition {
 export const SKILLS_DB = {
   react: {
     name: 'React',
-    color: 'from-cyan-500/20 to-cyan-500/10',
-    border: 'border-cyan-500/30',
+    color: 'from-teal-500/20 to-teal-500/10',
+    border: 'border-teal-300',
   },
   nodejs: {
     name: 'Node.js',
-    color: 'from-orange-500/20 to-orange-500/10',
-    border: 'border-orange-500/30',
+    color: 'from-teal-500/20 to-teal-500/10',
+    border: 'border-teal-300',
   },
   langchain: {
     name: 'LangChain',
-    color: 'from-purple-500/20 to-purple-500/10',
-    border: 'border-purple-500/30',
+    color: 'from-teal-500/20 to-teal-500/10',
+    border: 'border-teal-300',
   },
   postgresql: {
     name: 'PostgreSQL',
-    color: 'from-blue-500/20 to-blue-500/10',
-    border: 'border-blue-500/30',
+    color: 'from-teal-500/20 to-teal-500/10',
+    border: 'border-teal-300',
   },
   websocket: {
     name: 'WebSocket',
-    color: 'from-green-500/20 to-green-500/10',
-    border: 'border-green-500/30',
+    color: 'from-teal-500/20 to-teal-500/10',
+    border: 'border-teal-300',
   },
   python: {
     name: 'Python',
-    color: 'from-cyan-500/20 to-cyan-500/10',
-    border: 'border-cyan-500/30',
+    color: 'from-teal-500/20 to-teal-500/10',
+    border: 'border-teal-300',
   },
   docker: {
     name: 'Docker',
-    color: 'from-blue-500/20 to-blue-500/10',
-    border: 'border-blue-500/30',
+    color: 'from-teal-500/20 to-teal-500/10',
+    border: 'border-teal-300',
   },
   mongodb: {
     name: 'MongoDB',
-    color: 'from-green-500/20 to-green-500/10',
-    border: 'border-green-500/30',
+    color: 'from-teal-500/20 to-teal-500/10',
+    border: 'border-teal-300',
   },
   aws: {
     name: 'AWS',
-    color: 'from-orange-500/20 to-orange-500/10',
-    border: 'border-orange-500/30',
+    color: 'from-teal-500/20 to-teal-500/10',
+    border: 'border-teal-300',
   },
   grafana: {
     name: 'Grafana',
-    color: 'from-orange-500/20 to-orange-500/10',
-    border: 'border-orange-500/30',
+    color: 'from-teal-500/20 to-teal-500/10',
+    border: 'border-teal-300',
   },
   typescript: {
     name: 'TypeScript',
-    color: 'from-blue-500/20 to-blue-500/10',
-    border: 'border-blue-500/30',
+    color: 'from-teal-500/20 to-teal-500/10',
+    border: 'border-teal-300',
   },
-  fastapi: {
-    name: 'FastAPI',
-    color: 'from-cyan-500/20 to-cyan-500/10',
-    border: 'border-cyan-500/30',
+  api: {
+    name: 'API Rest',
+    color: 'from-teal-500/20 to-teal-500/10',
+    border: 'border-teal-300',
   },
+  vue: {
+    name: 'Vue',
+    color: 'from-teal-500/20 to-teal-500/10',
+    border: 'border-teal-300',
+  },
+  queues: {
+    name: 'Message Queues',
+    color: 'from-teal-500/20 to-teal-500/10',
+    border: 'border-teal-300',
+  }
 } as const;
 
 export type SkillKey = keyof typeof SKILLS_DB;

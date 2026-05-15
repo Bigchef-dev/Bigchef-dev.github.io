@@ -13,7 +13,14 @@
   },
   "projects": {
     "title": "Mes Projets",
-    "description": "Découvrez mes derniers projets combinant fullstack et intelligence artificielle"
+    "description": "Découvrez mes derniers projets combinant fullstack et intelligence artificielle",
+    "filters": {
+      "all": "Tous",
+      "professionnel": "Professionnel",
+      "personnel": "Personnel",
+      "universitaire": "Universitaire",
+      "associatif": "Associatif"
+    }
   },
   "contact": {
     "title": "Prenons contact",

@@ -30,7 +30,7 @@ export function Home() {
         </div>
 
         {/* Scroll indicator */}
-        <div className="mt-20 flex flex-col items-center gap-2 text-neon-cyan/60 animate-bounce">
+        <div className="mt-20 flex flex-col items-center gap-2 text-gray-400 animate-bounce">
           <p className="text-sm font-medium">{t('nav.projects')}</p>
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
