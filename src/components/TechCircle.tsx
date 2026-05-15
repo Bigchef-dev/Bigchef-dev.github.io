@@ -1,18 +1,18 @@
 import {
   Code2,
-  GitBranch,
   Brain,
   Database,
-  Server
+  Server,
+  Container,
 } from 'lucide-react';
 
 const technologies = [
   { name: 'React', icon: Code2 },
-  { name: 'Node.js', icon: Server },
+  { name: 'Typescript', icon: Server },
   { name: 'Python', icon: Code2 },
   { name: 'LangChain', icon: Brain },
   { name: 'PostgreSQL', icon: Database },
-  { name: 'Docker', icon: GitBranch },
+  { name: 'Docker', icon: Container },
 ];
 
 export function TechCircle() {
@@ -36,7 +36,7 @@ export function TechCircle() {
       <div className="absolute inset-0">
         {technologies.map((tech, index) => {
           const angle = (index / technologies.length) * Math.PI * 2;
-          const radius = 130;
+          const radius = 150;
           const x = Math.cos(angle) * radius;
           const y = Math.sin(angle) * radius;
 

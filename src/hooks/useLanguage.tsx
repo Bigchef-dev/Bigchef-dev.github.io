@@ -1,32 +1,42 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
-import fr from '../locales/fr.json';
-import en from '../locales/en.json';
-
-type Language = 'fr' | 'en';
-type Translations = typeof fr;
+import { translations, type Language, type TranslationKeys } from '../locales/translations';
 
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
-  t: (key: string) => string;
+  t: (key: TranslationKeys) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-const translations: Record<Language, Translations> = { fr, en };
+function getNestedValue(obj: Record<string, unknown>, path: string[]): unknown {
+  let current: unknown = obj;
+  for (const key of path) {
+    if (current && typeof current === 'object' && key in current) {
+      current = (current as Record<string, unknown>)[key];
+    } else {
+      return undefined;
+    }
+  }
+  return current;
+}
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguage] = useState<Language>('fr');
 
-  const t = (key: string): string => {
+  const t = (key: TranslationKeys): string => {
     const keys = key.split('.');
-    let value: any = translations[language];
 
-    for (const k of keys) {
-      value = value?.[k];
-    }
+    // Try active language first
+    const activeValue = getNestedValue(translations[language] as unknown as Record<string, unknown>, keys);
+    if (typeof activeValue === 'string') return activeValue;
 
-    return typeof value === 'string' ? value : key;
+    // Fallback to English
+    const fallbackValue = getNestedValue(translations.en as unknown as Record<string, unknown>, keys);
+    if (typeof fallbackValue === 'string') return fallbackValue;
+
+    // Last resort: return the key itself
+    return key;
   };
 
   return (

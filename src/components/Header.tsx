@@ -1,38 +1,60 @@
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
 import { Globe } from 'lucide-react';
 
+const NAV_ITEMS = ['contact', 'timeline', 'projects'] as const;
+
 export function Header() {
   const { t, language, setLanguage } = useLanguage();
+  const [activeSection, setActiveSection] = useState('contact');
+
+  useEffect(() => {
+    const sections = document.querySelectorAll('section[id]');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: '-40% 0px -55% 0px' }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
+  const scrollTo = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200">
       <nav className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="text-2xl font-black text-teal-600 hover:opacity-80 transition-opacity">
+        <button onClick={() => scrollTo('contact')} className="text-2xl font-black text-teal-600 hover:opacity-80 transition-opacity">
           M.
-        </Link>
+        </button>
 
         {/* Navigation Links */}
         <div className="flex items-center gap-8">
-          <Link 
-            to="/" 
-            className="text-gray-600 hover:text-teal-600 transition-colors font-medium"
-          >
-            {t('nav.home')}
-          </Link>
-          <Link 
-            to="/projects" 
-            className="text-gray-600 hover:text-teal-600 transition-colors font-medium"
-          >
-            {t('nav.projects')}
-          </Link>
-          <Link 
-            to="/contact" 
-            className="text-gray-600 hover:text-teal-600 transition-colors font-medium"
-          >
-            {t('nav.contact')}
-          </Link>
+          {NAV_ITEMS.map((section) => (
+            <button
+              key={section}
+              onClick={() => scrollTo(section)}
+              className={`transition-colors font-medium ${
+                activeSection === section
+                  ? 'text-teal-600'
+                  : 'text-gray-600 hover:text-teal-600'
+              }`}
+            >
+              {t(`nav.${section}`)}
+            </button>
+          ))}
 
           {/* Language Switcher */}
           <button

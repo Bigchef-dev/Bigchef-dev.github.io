@@ -1,26 +1,26 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { LanguageProvider } from './hooks/useLanguage';
 import { Header } from './components/Header';
 import { Background } from './components/Background';
 import { Home } from './pages/Home';
+import { Timeline } from './components/Timeline';
 import { Projects } from './pages/Projects';
-import { Contact } from './pages/Contact';
 import './styles/globals.css';
 
 function App() {
   return (
     <LanguageProvider>
-      <BrowserRouter>
-        <div className="relative min-h-screen bg-white">
-          <Background />
-          <Header />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </div>
-      </BrowserRouter>
+      <div className="relative min-h-screen bg-white">
+        <Background />
+        <Header />
+        <main>
+          <Home />
+          <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
+          <Timeline />
+          <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
+          <Projects />
+          <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
+        </main>
+      </div>
     </LanguageProvider>
   );
 }

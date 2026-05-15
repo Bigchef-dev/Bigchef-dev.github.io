@@ -30,7 +30,7 @@ export function Contact() {
   };
 
   return (
-    <div className="min-h-screen pt-24 pb-20">
+    <section id="contact" className="py-20">
       <div className="max-w-2xl mx-auto px-6">
         {/* Title */}
         <div className="text-center mb-16">
@@ -157,6 +157,6 @@ export function Contact() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

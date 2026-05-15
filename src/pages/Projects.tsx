@@ -3,10 +3,11 @@ import ReactMarkdown from 'react-markdown';
 import { useLanguage } from '../hooks/useLanguage';
 import { ExternalLink, Code, X, Globe, GitBranch, ChevronLeft, ChevronRight } from 'lucide-react';
 import { SKILLS_DB, projects, type Project } from '../data';
+import type { TranslationKeys } from '../locales/translations';
 
 type Category = 'associatif' | 'universitaire' | 'professionnel' | 'personnel';
 
-const CATEGORIES: { key: 'all' | Category; labelKey: string; icon: string }[] = [
+const CATEGORIES: { key: 'all' | Category; labelKey: TranslationKeys; icon: string }[] = [
   { key: 'all', labelKey: 'projects.filters.all', icon: '📋' },
   { key: 'professionnel', labelKey: 'projects.filters.professionnel', icon: '💼' },
   { key: 'personnel', labelKey: 'projects.filters.personnel', icon: '🎨' },
@@ -235,7 +236,7 @@ export function Projects() {
     : projects.filter((p) => p.category === activeCategory);
 
   return (
-    <div className="min-h-screen pt-24 pb-20">
+    <section id="projects" className="py-20">
       <div className="max-w-6xl mx-auto px-6">
         {/* Title */}
         <div className="text-center mb-12">
@@ -349,6 +350,6 @@ export function Projects() {
 
       {/* Modal */}
       <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
-    </div>
+    </section>
   );
 }
