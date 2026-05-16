@@ -8,7 +8,7 @@ export interface TimelineEntry {
   images?: string[];
 }
 
-export const timelineData: TimelineEntry[] = [
+const rawTimelineData = [
   {
     id: 1,
     year: '2024 - 2026',
@@ -48,7 +48,7 @@ export const timelineData: TimelineEntry[] = [
     id: 6,
     year: '2021',
     type: 'education',
-    logo: 'https://logo.clearbit.com/startupai.io',
+    logo: '',
   },
   {
     id: 7,
@@ -57,7 +57,9 @@ export const timelineData: TimelineEntry[] = [
     logo: '/src/assets/lyceeflaubert.png',
     images: ['/src/assets/lyceeflaubert.png'],
   }
-].map((entry) => ({
+] satisfies TimelineEntry[];
+
+export const timelineData: TimelineEntry[] = rawTimelineData.map((entry) => ({
   ...entry,
   logo: resolveAssetUrl(entry.logo),
   images: entry.images?.map((image) => resolveAssetUrl(image)),

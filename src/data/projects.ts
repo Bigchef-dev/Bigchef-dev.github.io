@@ -40,9 +40,9 @@ export interface Project {
 }
 
 /**
- * Liste des projets
+ * Liste brute des projets
  */
-export const projects: Project[] = [
+const rawProjects = [
   {
     id: 1,
     title: 'Gepetto, Chatbot IA & Rag',
@@ -86,7 +86,8 @@ export const projects: Project[] = [
       alt: { fr: 'Suivi de l\'éxécution d\'une requête à Gepetto', en: 'Request execution timeline' }
     }],
     technologies: ['typescript', 'api', 'docker', 'mistral-ai', 'rag', 'langchain', 'agentic', 'sql', 'nestjs'],
-    category: 'professionnel'
+    category: 'professionnel',
+    website: "https://blog.digitaleo.fr/marketing-ia-piloter-changement-accompagnement-client"
   },
   {
     id: 2,
@@ -546,7 +547,12 @@ I mark the initial exploration as complete and move on`,
     category: 'associatif',
     gitlab: 'https://gitlab.com/BigChef_/phone'
   }
-].map((project) => ({
+] satisfies Project[];
+
+/**
+ * Liste des projets avec chemins d'assets résolus pour la production
+ */
+export const projects: Project[] = rawProjects.map((project) => ({
   ...project,
   images: project.images.map((image) => ({
     ...image,
