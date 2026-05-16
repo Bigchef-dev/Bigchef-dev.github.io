@@ -1,3 +1,5 @@
+import { resolveAssetUrl } from './assets';
+
 export interface TimelineEntry {
   id: number;
   year: string;
@@ -55,4 +57,8 @@ export const timelineData: TimelineEntry[] = [
     logo: '/src/assets/lyceeflaubert.png',
     images: ['/src/assets/lyceeflaubert.png'],
   }
-];
+].map((entry) => ({
+  ...entry,
+  logo: resolveAssetUrl(entry.logo),
+  images: entry.images?.map((image) => resolveAssetUrl(image)),
+}));

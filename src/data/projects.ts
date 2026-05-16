@@ -1,4 +1,5 @@
 import { SkillKey } from './skills';
+import { resolveAssetUrl } from './assets';
 
 /**
  * Interface pour les images
@@ -545,4 +546,10 @@ I mark the initial exploration as complete and move on`,
     category: 'associatif',
     gitlab: 'https://gitlab.com/BigChef_/phone'
   }
-];
+].map((project) => ({
+  ...project,
+  images: project.images.map((image) => ({
+    ...image,
+    src: resolveAssetUrl(image.src),
+  })),
+}));
