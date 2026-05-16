@@ -43,52 +43,37 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: 1,
-    title: 'AI Chat Assistant',
-    description: 'Assistant IA conversationnel avec LangChain et OpenAI. Interface React avec streaming en temps réel.',
-    fullDescription: `# AI Chat Assistant
+    title: 'Gepetto, Chatbot IA & Rag',
+    description: 'Gepetto est un chatbot IA avancé pour fournir des réponses précises et contextuelles.',
+    fullDescription: `### Contexte
 
-Un assistant IA conversationnel complet et performant.
+  Ce projet a été développé dans le cadre de mon stage de M1.
 
-## 🎯 Fonctionnalités principales
+  Gepetto est un chatbot IA avancé utilisant la génération augmentée par récupération (RAG) pour fournir des réponses précises et contextuelles, disponible dans le Slack interne.
 
-- Streaming des réponses en temps réel
-- Support du contexte conversationnel persistant
-- Intégration avec OpenAI et autres LLMs
-- Interface utilisateur moderne et réactive
-- Historique complet de conversations
-- Authentification sécurisée
+  ### Contribution
 
-## 🏗️ Architecture technique
+  Le projet a été initialisé avec un premier prototype ; ma tâche a consisté à concevoir une architecture robuste et modulaire, intégrant des fonctionnalités avancées de RAG (Parent-Document-Retrieval, raisonnement). Ce projet m'a beaucoup appris sur les systèmes de dialogue basés sur des LLMs et m'a permis d'explorer en profondeur les techniques de RAG.
 
-- **Frontend**: React avec Tailwind CSS et animations
-- **Backend**: Node.js/Express avec WebSocket
-- **Base de données**: PostgreSQL pour l'historique
-- **Déploiement**: Docker sur infrastructure cloud
-- **Monitoring**: ELK Stack pour les logs
-
-## 📊 Performances
-
-- Temps de réponse < 200ms
-- Support 1000+ utilisateurs concurrents
-- Uptime 99.9%`,
-    images: [
-      {
-        src: 'https://images.unsplash.com/photo-1677442d019cecf8d29b36b9cf5f9e6e3d5f6d9d?w=1000&q=80',
-        alt: 'AI Chat Assistant - Interface conversationnelle',
-        width: 1000,
-        height: 600,
-      },
-      {
-        src: 'https://images.unsplash.com/photo-1677442d019cecf8d29b36b9cf5f9e6e3d5f6d9d?w=800&q=80',
-        alt: 'AI Chat Assistant - Dashboard',
-        width: 800,
-        height: 600,
-      },
-    ],
-    technologies: ['react', 'nodejs', 'langchain', 'postgresql', 'websocket', 'typescript', 'docker'],
-    github: 'https://github.com/mathieu/ai-chat',
-    website: 'https://ai-chat-demo.vercel.app',
-    category: 'personnel',
+  Ma contribution, d'abord prévue pour le support client, a rapidement été étendue pour fournir des réponses aux développeurs à partir des documentations techniques des projets.`,
+    images: [{
+      src: '/src/assets/projects/gepetto/conversation.png',
+      alt: 'Interface de chat avec Gepetto'
+    }, {
+      src: '/src/assets/projects/gepetto/ticket.png',
+      alt: 'Réponse de résolution à un ticket nouvellement créé'
+    }, {
+      src: '/src/assets/projects/gepetto/parent-doc-retrieval.png',
+      alt: 'Explication du Parent-Document-Retrieval (hiérarchique) améliorer les réponses'
+    }, {
+      src: '/src/assets/projects/gepetto/grafana.png',
+      alt: 'Suivi des traces sur un board grafana pour monitorer les interactions'
+    }, {
+      src: '/src/assets/projects/gepetto/timeline.png',
+      alt: 'Suivi de l\'éxécution d\'une requête à Gepetto'
+    }],
+    technologies: ['typescript', 'api', 'docker', 'mistral-ai', 'rag', 'langchain', 'agentic', 'sql', 'nestjs'],
+    category: 'professionnel'
   },
   {
     id: 2,
@@ -222,58 +207,10 @@ Application web en **Vue 3** avec **Vue Router**, **Vuex**, et **Naive UI** (th�
         height: 600,
       },
     ],
-    technologies: ['react', 'python', 'api', 'postgresql', 'docker', 'grafana', 'typescript'],
+    technologies: ['vue', 'python', 'api', 'postgresql', 'docker', 'grafana', 'typescript'],
     gitlab: 'https://gitlab.com/aaronngbot/aaron_monorepo',
     website: 'https://aaronlem.ovh',
     category: 'personnel',
-  },
-  {
-    id: 3,
-    title: 'Real-time Collaboration App',
-    description: 'Plateforme de collaboration temps réel avec sync cloud. Stack fullstack moderne.',
-    fullDescription: `# Real-time Collaboration App
-
-Application collaborative permettant à plusieurs utilisateurs de travailler ensemble en temps réel.
-
-## 🤝 Fonctionnalités collaboratives
-
-- Synchronisation en temps réel via WebSocket
-- Édition collaborative de documents
-- Curseurs et présence des utilisateurs
-- Versioning et historique complet
-- Commentaires inline
-- Partage de fichiers
-
-## ☁️ Cloud & Storage
-
-- **AWS S3** pour les fichiers
-- **CloudFlare CDN** pour les assets
-- **MongoDB** pour les données collaboratives
-- Transactions ACID
-
-## 🔒 Sécurité
-
-- Authentification OAuth2
-- Chiffrement end-to-end
-- Permissions granulaires
-- Audit trail complet`,
-    images: [
-      {
-        src: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=1000&q=80',
-        alt: 'Real-time Collaboration App - Collaboration en temps reel',
-        width: 1000,
-        height: 600,
-      },
-      {
-        src: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80',
-        alt: 'Real-time Collaboration App - Edition collaborative',
-        width: 800,
-        height: 600,
-      },
-    ],
-    technologies: ['vue', 'nodejs', 'websocket', 'api', 'docker', 'grafana', 'typescript', 'queues'],
-    website: 'https://aaronlem.ovh',
-    category: 'personnel'
   },
   {
     id: 4,
@@ -374,7 +311,8 @@ To view [Frontend code](https://github.com/Bigchef-dev/hackaton-back)`,
       alt: 'Telegram MCP Server & Client'
     }],
     technologies: ['nestjs', 'typescript', 'api', 'docker', 'mcp', 'mistral-ai', 'agentic'],
-    category: 'personnel'
+    category: 'personnel',
+    github: 'https://github.com/Bigchef-dev/telegram-mcp-client'
   },
   {
     id: 6,
@@ -389,37 +327,68 @@ To view [Frontend code](https://github.com/Bigchef-dev/hackaton-back)`,
     category: 'universitaire'
   },
   {
-    id: 7,
-    title: 'Gepetto, Chatbot IA & Rag',
-    description: 'Gepetto est un chatbot IA avancé pour fournir des réponses précises et contextuelles.',
-    fullDescription: `### Contexte
-    Ce projet à été développé dans le cadre de mon stage de M1.
+    id: 8,
+    title: 'Analyse d\'occupation des salles pour du marketing direct',
+    description: 'Analyse d\'occupation des salles de cours pour optimiser les campagnes de marketing direct.',
+    fullDescription: `Je vais créer un bref plan (TODO) pour l'analyse du dépôt puis extraire les infos clés (package.json, readme.md, index.ts).
 
-    Gepetto est un chatbot IA avancé utilisant Retrieval-Augmented Generation (RAG) pour fournir des réponses précises et contextuelles, disponible dans le slack interne.
-    
-    ### Contribution
+Created 3 todos
 
-    Le projet à été initialisé préalablement avec un premier POC, j'ai ensuite pris le relais pour développer une architecture robuste et modulaire, intégrant des fonctionnalités avancées de RAG (Parent-Document-Retrieval, raisonnement).
-    Ce projet m'en a appris énormément sur les systèmes de dialogue basés sur des LLMs, et m'a permis d'explorer en profondeur les techniques de RAG.
-    
-    Ma contribution était initialement prévu pour le support, à été rapidement étendue pour fournir des réponses aux développeurs à partir des documentations techniques des projets.`,
+Je vais lire package.json, readme.md et index.ts pour extraire le stack et les fonctionnalités principales.
+
+Read [](file:///c%3A/Users/mathe/Documents/repos/jamphi/package.json)
+
+Read [](file:///c%3A/Users/mathe/Documents/repos/jamphi/readme.md)
+
+Read [](file:///c%3A/Users/mathe/Documents/repos/jamphi/index.ts)
+
+Je marque l'exploration initiale comme terminée et passe à l'analyse détaillée.
+
+Starting: *Parcourir fichiers clés (\`package.json\`,\`readme.md\`,\`index.ts\`)* (2/3)
+
+Progress: lecture des fichiers clés terminée — je rédige maintenant le résumé court.
+
+**Résumé court pour portfolio — jamphi**
+
+- **Projet :** Bot Telegram de planification et d'analyse d'occupation des salles universitaires (gestion de calendriers, exports ICS, rapports d'amphi et passages).  
+- **Rôle / responsabilités typiques :** intégration de calendriers, parsing ICS, génération de rapports par promotion, commandes d'administration Telegram, mises à jour périodiques (cron), persistence MongoDB.  
+- **Stack technique :** Node.js + TypeScript, \`telegraf\` (bot Telegram), \`mongoose\` / MongoDB, parsing ICS (\`ics\`), \`pino\` logging, \`jest\` pour les tests.  
+- **Dev / CI / run :** scripts TypeScript (\`tsx\`, \`ts-node\`), \`Docker\` / \`docker-compose\` présents, gitlab-ci.yml, gestion des dépendances via npm/pnpm.  
+- **Tests & qualité :** suite de tests Jest, configuration ESLint, usage de \`mongodb-memory-server\` pour tests d'intégration.  
+- **Points notables / livrables :** architecture modulaire (répertoires controllers, commands, components, \`updater\`), exemples de données dans data, scénarios de test dans tests et fichiers ICS d'exemple dans files.  
+- **How to run (extrait) :** installer deps puis \`npm start\` (entrée : index.ts) — voir readme.md pour détails.
+
+Fichiers utiles à citer : package.json, readme.md, index.ts, telegram.ts, calendarUpdater.ts.
+
+Souhaitez‑vous que je transforme ce résumé en une entrée prête pour LinkedIn / GitHub Pages (texte court + 2 phrases d'accroche) ?`,
     images: [{
-      src: '/src/assets/projects/gepetto/conversation.png',
-      alt: 'Interface de chat avec Gepetto'
+      src: '/src/assets/projects/jamphi/amphis.png',
+      alt: 'Analyse d\'occupation des salles d\'amphi'
     }, {
-      src: '/src/assets/projects/gepetto/ticket.png',
-      alt: 'Réponse de résolution à un ticket nouvellement créé'
+      src: '/src/assets/projects/jamphi/entrees.png',
+      alt: 'Analyse des passages dans les salles de cours'
     }, {
-      src: '/src/assets/projects/gepetto/parent-doc-retrieval.png',
-      alt: 'Explication du Parent-Document-Retrieval (hiérarchique) améliorer les réponses'
-    }, {
-      src: '/src/assets/projects/gepetto/grafana.png',
-      alt: 'Suivi des traces sur un board grafana pour monitorer les interactions'
-    }, {
-      src: '/src/assets/projects/gepetto/timeline.png',
-      alt: 'Suivi de l\'éxécution d\'une requête à Gepetto'
+      src: '/src/assets/projects/jamphi/exel.png',
+      alt: 'Exel pour impression'
     }],
-    technologies: ['typescript', 'api', 'docker', 'mistral-ai', 'rag', 'langchain', 'agentic', 'sql', 'nestjs'],
-    category: 'professionnel'
+    technologies: ['typescript'],
+    gitlab: 'https://gitlab.com/BigChef_/jamphi',
+    category: 'associatif'
+  },
+  {
+    id: 9,
+    title: 'Plateforme de Phoning',
+    description: 'Développement d\'une plateforme de phoning avec gestion de concurrence',
+    fullDescription: `Développement d'une plateforme de phoning pour une association, avec gestion de la concurrence et des campagnes de communication. Le projet a été réalisé en collaboration avec une équipe de bénévoles, et a permis d'améliorer significativement l'efficacité des campagnes de phoning grâce à une interface intuitive et des fonctionnalités avancées de gestion des contacts et des scripts d'appel.`,
+    images: [{
+      src: '/src/assets/projects/phone/interface.png',
+      alt: 'Interface utilisateur de la plateforme'
+    }, {
+      src: '/src/assets/projects/phone/queues.png',
+      alt: 'Gestion des files d\'attente pour les appels'
+    }],
+    technologies: ['typescript', 'docker', 'api', 'nestjs'],
+    category: 'associatif',
+    gitlab: 'https://gitlab.com/BigChef_/phone'
   }
 ];

@@ -151,7 +151,7 @@ function ProjectModal({ project, onClose, onImageClick }: ProjectModalProps) {
                   h1: ({ node, ...props }) => <h1 className="text-2xl font-bold text-gray-900 mt-6 mb-3" {...props} />,
                   h2: ({ node, ...props }) => <h2 className="text-xl font-bold text-gray-800 mt-5 mb-2" {...props} />,
                   h3: ({ node, ...props }) => <h3 className="text-lg font-semibold text-gray-700 mt-4 mb-2" {...props} />,
-                  p: ({ node, ...props }) => <p className="text-gray-600 mb-3 text-justify" {...props} />,
+                  p: ({ node, ...props }) => <p className="text-gray-600 mb-3" {...props} />,
                   ul: ({ node, ...props }) => <ul className="list-disc list-inside space-y-1 mb-3 text-gray-600 text-justify" {...props} />,
                   li: ({ node, ...props }) => <li className="ml-2" {...props} />,
                   strong: ({ node, ...props }) => <strong className="text-gray-900 font-semibold" {...props} />,
@@ -335,7 +335,7 @@ export function Projects() {
               </div>
 
               {/* Project Card */}
-              <div className="bg-white border border-gray-200 rounded-b-lg p-6 flex flex-col h-auto shadow-sm hover:shadow-md transition-shadow">
+              <div className="bg-white border border-gray-200 rounded-b-lg p-6 flex flex-col h-auto shadow-sm hover:shadow-md transition-shadow overflow-hidden break-words">
                 {/* Category Badge */}
                 <div className="flex gap-2 mb-3">
                   <span className={`px-2 py-0.5 rounded-full text-xs font-semibold border ${

@@ -47,5 +47,12 @@ export const timelineData: TimelineEntry[] = [
     year: '2021',
     type: 'education',
     logo: 'https://logo.clearbit.com/startupai.io',
+  },
+  {
+    id: 7,
+    year: '2017',
+    type: 'education',
+    logo: '/src/assets/lyceeflaubert.png',
+    images: ['/src/assets/lyceeflaubert.png'],
   }
 ];

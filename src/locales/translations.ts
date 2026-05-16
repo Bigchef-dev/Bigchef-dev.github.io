@@ -50,6 +50,11 @@ export const translations = {
           company: 'Jeanne d\'arc Vitré',
           description: 'Mathématiques • Numérique Sciences informatiques • Sciences de l\'ingénieur.',
         },
+        '7': {
+          title: 'Premiers pas en programmation',
+          company: 'OpenClassrooms',
+          description: 'Apprentissage en autonomie des fondamentaux du web (Front-end, PHP/SQL) avec une évolution technique vers l\'environnement Node.js',
+        }
       },
     },
     projects: {
