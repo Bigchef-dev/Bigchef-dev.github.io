@@ -1,11 +1,17 @@
 import { useState } from 'react';
 import { GraduationCap, Briefcase } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
 import { useLanguage } from '../hooks/useLanguage';
 import { timelineData, type TimelineEntry } from '../data/timeline';
 import type { TranslationKeys } from '../locales/translations';
 
+function tKey(id: number, field: 'title' | 'company' | 'description'): TranslationKeys {
+  return `timeline.entries.${id}.${field}` as TranslationKeys;
+}
+
 function TimelineEntryCard({ entry }: { entry: TimelineEntry }) {
   const [imgError, setImgError] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const { t } = useLanguage();
 
   const IconComponent = entry.type === 'education' ? GraduationCap : Briefcase;
@@ -21,7 +27,7 @@ function TimelineEntryCard({ entry }: { entry: TimelineEntry }) {
         {!imgError ? (
           <img
             src={entry.logo}
-            alt={t(entry.companyKey as TranslationKeys)}
+            alt={t(tKey(entry.id, 'company'))}
             className="w-6 h-6 object-contain"
             onError={() => setImgError(true)}
           />
@@ -36,15 +42,39 @@ function TimelineEntryCard({ entry }: { entry: TimelineEntry }) {
           {entry.year}
         </span>
         <h3 className="font-bold text-gray-900 text-lg mb-1">
-          {t(entry.titleKey as TranslationKeys)}
+          {t(tKey(entry.id, 'title'))}
         </h3>
         <p className="text-sm font-medium text-teal-600 mb-2">
-          {t(entry.companyKey as TranslationKeys)}
+          {t(tKey(entry.id, 'company'))}
         </p>
-        <p className="text-sm text-gray-600 leading-relaxed">
-          {t(entry.descriptionKey as TranslationKeys)}
-        </p>
+        <div className="text-sm text-gray-600 leading-relaxed prose prose-sm max-w-none">
+          <ReactMarkdown>
+            {t(tKey(entry.id, 'description'))}
+          </ReactMarkdown>
+        </div>
       </div>
+
+      {/* Lightbox modal */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
+          onClick={() => setSelectedImage(null)}
+        >
+          <button
+            onClick={() => setSelectedImage(null)}
+            className="absolute top-4 right-4 text-white/80 hover:text-white text-3xl font-light transition-colors"
+            aria-label="Close"
+          >
+            ✕
+          </button>
+          <img
+            src={selectedImage}
+            alt=""
+            className="max-w-full max-h-[90vh] object-contain rounded-lg"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </div>
   );
 }

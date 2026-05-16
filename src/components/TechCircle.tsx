@@ -4,10 +4,11 @@ import {
   Database,
   Server,
   Container,
+  Coffee,
 } from 'lucide-react';
 
 const technologies = [
-  { name: 'React', icon: Code2 },
+  { name: 'Java', icon: Coffee },
   { name: 'Typescript', icon: Server },
   { name: 'Python', icon: Code2 },
   { name: 'LangChain', icon: Brain },

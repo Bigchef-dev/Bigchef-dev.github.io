@@ -1,73 +1,5 @@
 export const translations = {
   en: {
-    nav: {
-      home: 'Home',
-      timeline: 'Timeline',
-      projects: 'Projects',
-      contact: 'Contact',
-    },
-    hero: {
-      name: 'Mathéo',
-      title: 'Software Engineer & AI Researcher',
-      tagline: 'Building AI-Powered Solutions for Real-World Impact',
-      location: 'Rennes, Montpellier, France',
-      affiliation: 'Rennes University',
-      cta_projects: 'View My Work ↓',
-      cta_resume: 'Resume',
-      cta_contact: 'Contact',
-    },
-    timeline: {
-      subtitle: 'My academic and professional journey',
-      entries: {
-        '1': {
-          title: 'Master in Artificial Intelligence',
-          company: 'Carnegie Mellon University Africa',
-          description: 'Specialization in NLP and Computer Vision. Research on language models and reinforcement learning.',
-        },
-        '2': {
-          title: 'Fullstack Engineer',
-          company: 'TechCorp Solutions',
-          description: 'Development of web and AI applications. Microservices architecture with Node.js and React.',
-        },
-        '3': {
-          title: 'Bachelor in Computer Science',
-          company: 'Rennes University',
-          description: 'Fundamental training in computer science, algorithms, and software development.',
-        },
-        '4': {
-          title: 'Junior Developer',
-          company: 'StartupAI',
-          description: 'Development of chatbots and virtual assistants with LangChain and OpenAI.',
-        },
-      },
-    },
-    projects: {
-      title: 'My Projects',
-      description: 'Discover my latest projects combining fullstack and artificial intelligence',
-      filters: {
-        all: 'All',
-        professionnel: 'Professional',
-        personnel: 'Personal',
-        universitaire: 'Academic',
-        associatif: 'Community',
-      },
-    },
-    contact: {
-      title: "Let's connect",
-      description: 'Feel free to reach out to discuss your projects',
-      form: {
-        name: 'Name',
-        email: 'Email',
-        message: 'Message',
-        submit: 'Send',
-        sending: 'Sending...',
-        success: 'Message sent successfully!',
-        error: 'An error occurred',
-      },
-    },
-    footer: {
-      copyright: '© 2026 Mathieu. All rights reserved.',
-    },
   },
   fr: {
     nav: {
@@ -77,11 +9,10 @@ export const translations = {
       contact: 'Contact',
     },
     hero: {
-      name: 'Mathieu',
-      title: 'Software Engineer & AI Researcher',
-      tagline: "Créer des solutions basées sur l'IA pour un impact dans le monde réel",
+      name: 'Mathéo',
+      tagline: "Intégrer l'IA au cœur du logiciel pour un impact réel et immédiat",
       location: 'Rennes, Montpellier, France',
-      affiliation: 'Carnegie Mellon University Africa',
+      affiliation: 'Université de Rennes',
       cta_projects: 'Voir mon travail ↓',
       cta_resume: 'CV',
       cta_contact: 'Contact',
@@ -90,30 +21,40 @@ export const translations = {
       subtitle: 'Mon parcours académique et professionnel',
       entries: {
         '1': {
-          title: 'Master en Intelligence Artificielle',
-          company: 'Carnegie Mellon University Africa',
-          description: 'Spécialisation en NLP et Computer Vision. Recherche sur les modèles de langage et l\'apprentissage par renforcement.',
+          title: 'Master Informatique (Ingénieurie Logicielle)',
+          company: 'Université de Rennes',
+          description: 'Architectures logicielles parallèles • Validation et vérification de logiciels • Génie logiciel • Gestion des données distribuées • Architecture microservices • Option Machine Learning',
         },
         '2': {
-          title: 'Ingénieur Fullstack',
-          company: 'TechCorp Solutions',
-          description: 'Développement d\'applications web et IA. Architecture microservices avec Node.js et React.',
+          title: 'Stagiaire Ingénieur IA',
+          company: 'Orange Business',
+          description: 'Analyse des besoins, conception et implémentation de **bout-en-bout** dans une infrastructure existante.\n**Réalisations :**\n- Serveur MCP\n- Automatisation de l\'audit de sécurité\n- Détection de vulnérabilités via **LLM**',
         },
         '3': {
-          title: 'Licence en Informatique',
-          company: 'Rennes University',
-          description: 'Formation fondamentale en informatique, algorithmique et développement logiciel.',
+          title: 'Stagiaire Développeur IA',
+          company: 'Digitaleo',
+          description: 'Développement de bout en bout d’un agent conversationnel à fort impact pour les différents services internes. Utilisation de modèles **d’embeddings (Pinecone)**. Interconnexion avec les outils existants. Intégration d’un serveur MCP. Amélioration continue en expérimentant de nouvelles techniques, fine-tuning des modèles, des stratégies de prompt engineering et l’évaluation continue via LLM-as-a-Judge.\n\n**Technologies :**\n- Modèles d\'embeddings (Pinecone)\n- Serveur MCP\n- Fine-tuning & Prompt engineering\n- Évaluation continue via LLM-as-a-Judge\n\n**Compétences :** RAG • Orchestration • Re-Ranking',
         },
         '4': {
-          title: 'Développeur Junior',
-          company: 'StartupAI',
-          description: 'Développement de chatbots et assistants virtuels avec LangChain et OpenAI.',
+          title: 'Licence Informatique',
+          company: 'Université de Rennes',
+          description: 'Programmation Objet • Programmation de confiance • Probabilités et statistiques • appliquées à l’intelligence artificielle • Réseaux et Systèmes',
+        },
+        '5': {
+          title: 'Stagiaire Développeur Fullstack',
+          company: 'SODIRA Connect',
+          description: 'Stage de développement d\'une plateforme de supervision de passerelles IoT. **Backend Flask et frontend Vue3**. Implementation d\'un **auth server d\'authentification(SSO/OIDC)**. Réalisé l\’interface de l’outil de supervision : terminal de commande, édition de configuration pour machines distantes. Développement Agile',
+        },
+        '6': {
+          title: 'Baccalauréat',
+          company: 'Jeanne d\'arc Vitré',
+          description: 'Mathématiques • Numérique Sciences informatiques • Sciences de l\'ingénieur.',
         },
       },
     },
     projects: {
       title: 'Mes Projets',
-      description: 'Découvrez mes derniers projets combinant fullstack et intelligence artificielle',
+      description: 'Découvrez mes réalisations et projets que j\'ai contribué',
       filters: {
         all: 'Tous',
         professionnel: 'Professionnel',
@@ -122,21 +63,8 @@ export const translations = {
         associatif: 'Associatif',
       },
     },
-    contact: {
-      title: 'Prenons contact',
-      description: "N'hésitez pas à me contacter pour discuter de vos projets",
-      form: {
-        name: 'Nom',
-        email: 'Email',
-        message: 'Message',
-        submit: 'Envoyer',
-        sending: 'Envoi en cours...',
-        success: 'Message envoyé avec succès!',
-        error: "Une erreur s'est produite",
-      },
-    },
     footer: {
-      copyright: '© 2026 Mathieu. Tous droits réservés.',
+      copyright: '© 2026 Mathéo Guinche. Tous droits réservés.',
     },
   },
 } as const;
@@ -149,4 +77,4 @@ type DotJoin<T, P extends string> = T extends Record<string, unknown>
   ? { [K in keyof T & string]: T[K] extends string ? `${P}${K}` : DotJoin<T[K], `${P}${K}.`> }[keyof T & string]
   : never;
 
-export type TranslationKeys = DotJoin<typeof translations.en, ''>;
+export type TranslationKeys = DotJoin<typeof translations.fr, ''>;

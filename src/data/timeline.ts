@@ -1,51 +1,51 @@
 export interface TimelineEntry {
   id: number;
   year: string;
-  /** Translation key for the title (e.g. 'timeline.entries.1.title') */
-  titleKey: string;
-  /** Translation key for the company (e.g. 'timeline.entries.1.company') */
-  companyKey: string;
-  /** Translation key for the description (e.g. 'timeline.entries.1.description') */
-  descriptionKey: string;
   type: 'education' | 'work';
   logo: string;
+  images?: string[];
 }
 
 export const timelineData: TimelineEntry[] = [
   {
     id: 1,
     year: '2024 - 2026',
-    titleKey: 'timeline.entries.1.title',
-    companyKey: 'timeline.entries.1.company',
-    descriptionKey: 'timeline.entries.1.description',
     type: 'education',
-    logo: 'https://logo.clearbit.com/cmu.edu',
+    logo: '/src/assets/UNIRENNES_avatar_1.png',
+    images: ['/src/assets/UNIRENNES_avatar_1.png'],
   },
   {
     id: 2,
-    year: '2022 - 2024',
-    titleKey: 'timeline.entries.2.title',
-    companyKey: 'timeline.entries.2.company',
-    descriptionKey: 'timeline.entries.2.description',
+    year: '2026 - 6 mois',
     type: 'work',
-    logo: 'https://logo.clearbit.com/techcorp.com',
+    logo: '/src/assets/orange.png',
+    images: ['/src/assets/orange.png'],
   },
   {
     id: 3,
-    year: '2020 - 2022',
-    titleKey: 'timeline.entries.3.title',
-    companyKey: 'timeline.entries.3.company',
-    descriptionKey: 'timeline.entries.3.description',
-    type: 'education',
-    logo: 'https://logo.clearbit.com/univ-rennes.fr',
+    year: '2024 - 3 mois',
+    type: 'work',
+    logo: '/src/assets/digitaleo.jpg',
+    images: ['/src/assets/digitaleo.jpg'],
   },
   {
     id: 4,
-    year: '2019 - 2020',
-    titleKey: 'timeline.entries.4.title',
-    companyKey: 'timeline.entries.4.company',
-    descriptionKey: 'timeline.entries.4.description',
-    type: 'work',
-    logo: 'https://logo.clearbit.com/startupai.io',
+    year: '2021 - 2024',
+    type: 'education',
+    logo: '/src/assets/UNIRENNES_avatar_1.png',
+    images: ['/src/assets/UNIRENNES_avatar_1.png'],
   },
+  {
+    id: 5,
+    year: '2021 - 2024',
+    type: 'work',
+    logo: '/src/assets/sodiraconnect.png',
+    images: ['/src/assets/sodiraconnect.png'],
+  },
+  {
+    id: 6,
+    year: '2021',
+    type: 'education',
+    logo: 'https://logo.clearbit.com/startupai.io',
+  }
 ];
