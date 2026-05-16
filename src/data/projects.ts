@@ -84,52 +84,138 @@ Un assistant IA conversationnel complet et performant.
     id: 2,
     title: 'Aaron le Mercenaire',
     description: 'Un écosystème de Data Stream Processing, transformer et valoriser des flux de données pour trouver les meilleures opportunités pour les joueurs.',
-    fullDescription: `# Portfolio Analytics
+    fullDescription: `# Aaron — Écosystème de services pour NationsGlory
 
-Plateforme d'analytics complète pour suivre et analyser les performances.
+> Un monorepo complet orchestrant un bot Discord, une API REST, un front-end web et une flotte de workers de scrapping, au service de la communauté **NationsGlory** (serveur Minecraft).
 
-## 📈 Fonctionnalités
+---
 
-- Dashboards temps réel personnalisables
-- Graphiques interactifs avec Chart.js
-- Filtrage avancé par période et catégorie
-- Export en PDF/CSV
-- Système d'alertes et notifications
-- Comparaison de périodes
+## 🧠 Vue d'ensemble
+
+**Aaron** est un assistant multi-service intégré à l'écosystème du jeu Minecraft **NationsGlory**. Il permet aux joueurs de consulter en temps réel des données de jeu (joueurs, pays, factions, pillages, HDV), de configurer des alertes et notifications, et d'analyser l'activité des serveurs — le tout depuis **Discord** ou une **interface web**.
+
+Le projet est structuré en **monorepo** (pnpm workspaces) et contient **7 applications** et **2 packages partagés**, déployés via **Docker** et **GitLab CI/CD**.
+
+## 📦 Applications
+
+### 🔹 API REST — [\`apps/api\`](aaron_monorepo/apps/api) — v3.0.0
+
+Backend central en **Express.js / TypeScript** connecté à **MongoDB** (Mongoose) et **Redis** (ioredis).
+
+- **Authentification OAuth2** via Discord et NationsGlory (Passport.js)
+- **File d'attente de jobs** avec **BullMQ** (8 queues : pays, joueurs, événements Discord, scrapping…)
+- **Monitoring** des queues via **Bull Board** (interface web \`/queues\`)
+- **Documentation Swagger / OpenAPI**
+- **Métriques Prometheus** (\`prom-client\`)
+- **Workers intégrés** : scrapping-api-country, scrapping-api-player, connected-players
+- **Endpoints** : couleurs, joueurs connectés, pays, empires, événements HDV, désertions, pillages, espionnage, guerres, stockage…
+
+### 🔹 Discord Bot — [\`apps/discordv3\`](aaron_monorepo/apps/discordv3) — v3.0.0
+
+Bot Discord nommé **"Aaron le Mercenaire"**, développé avec **discord.js v14** en architecture **shardée** (clusters).
+
+- **20+ commandes slash** : \`/player\`, \`/country\`, \`/top-player\`, \`/top-country\`, \`/pillage\`, \`/hdv\`, \`/online\`, \`/network-connected\`, \`/colonie-rentable\`, \`/config\`, \`/alertes\`, \`/disbands\`, \`/coords\`, \`/canvas\`, \`/random-player\`, \`/random-country\`, \`/staffng-*\`…
+- **Commandes utilisateur** et **commandes message** (context menu)
+- **Système de notifications temps réel** : alertes de pillage, désertions, guerres, espionnage, fin de ciblage, arrivée/départ de joueurs, expirations HDV, notations, assignation de rôles
+- **Workers BullMQ** : traitement des événements Discord (guild et user)
+- **Système de langues** (français, anglais US/GB)
+- **Gestion des permissions** et des rôles liés
+- **API HTTP interne** pour communication avec le master process
+- **Collectors** avec pagination interactive (boutons)
+
+### 🔹 Front-end Web — [\`apps/web\`](aaron_monorepo/apps/web) — v4.0.0
+
+Application web en **Vue 3** avec **Vue Router**, **Vuex**, et **Naive UI** (thème dark orange personnalisé).
+
+- **Pages** : Accueil (statistiques live), Joueur, Pays (avec iframe Dynmap), Profil (compte, NationsGlory, guildes), Commandes, Pillages, Équipe, Login, Log Tool
+- **SSO** : Connexion via Discord OAuth2 et NationsGlory
+- **Configuration de guilde** : onglets Général, Pays ciblés, Espionnage, HDV (avec sélecteur de serveur, channel, rôle, fourchette de prix)
+- **Outil d'analyse de logs** client Minecraft (parse les logs NG avec codes couleurs)
+- **Palette de couleurs** pour 18+ serveurs (blue, orange, yellow, black, cyan, lime, coral, pink, alpha, sigma, omega, purple, green, red, delta, mocha, epsilon, jade)
+- **Barre de recherche** globale avec tags et sélecteur de serveur
+
+### 🔹 Workers de scrapping
+
+| Application | Technologie | Rôle |
+|---|---|---|
+| [\`scrapdynmap\`](aaron_monorepo/apps/scrapdynmap) | Node.js / BullMQ | Scrape les tuiles Dynmap des serveurs NG (Terre, Lune, Mars, Edora) et extrait les données de factions (niveau, puissance, banque, membres…) |
+| [\`scrappingapi\`](aaron_monorepo/apps/scrappingapi) | NestJS / BullMQ | Service de scrapping avec sélecteur de job (pays / joueurs) |
+| [\`yoxo-scrappingapi\`](aaron_monorepo/apps/yoxo-scrappingapi) | TypeScript / BullMQ | Scrapping programmé quotidien via l'API Yoxo SDK |
+| [\`getplayers\`](aaron_monorepo/apps/getplayers) | Node.js / BullMQ | Récupération des joueurs connectés en temps réel |
+| [\`fetchScrapping\`](aaron_monorepo/apps/fetchScrapping) | TypeScript | Scrapping pays par fetch pour meilleure efficacité |
+
+---
+
+## 📚 Packages partagés
+
+- **\`@monorepo/api-client\`** — Client HTTP SDK pour l'API NationsGlory avec authentification (email/mot de passe), reconnexion automatique sur expiration de token, modules dynmap et serverColors
+- **\`@monorepo/types\`** — Types TypeScript partagés entre les apps
+
+---
 
 ## 🛠️ Stack technique
 
-- **Frontend**: React + TypeScript + Tailwind
-- **Backend**: Python FastAPI
-- **Cache**: Redis pour les requêtes fréquentes
-- **Database**: PostgreSQL avec optimisations
-- **DevOps**: Docker + Kubernetes
-- **Monitoring**: Prometheus + Grafana
+| Catégorie | Technologies |
+|---|---|
+| **Backend** | Node.js, Express.js, TypeScript, NestJS |
+| **Base de données** | MongoDB (Mongoose), Redis (ioredis) |
+| **File d'attente** | BullMQ, Bull Board |
+| **Bot Discord** | discord.js v14 (shardé/cluster), discord-api-types |
+| **Front-end** | Vue 3, Vue Router, Vuex, Naive UI, Bulma, Sass |
+| **OAuth** | Passport.js (Discord, NationsGlory) |
+| **Monitoring** | Prometheus (prom-client), Pino (logging) |
+| **Validation** | Zod (@t3-oss/env-core) |
+| **Package Manager** | pnpm 11+ (workspaces) |
+| **Conteneurisation** | Docker, Docker Compose (4 profils : deps, core, bot, workers) |
+| **CI/CD** | GitLab CI (5 stages : packages → verify → build → image → deploy) |
+| **Déploiement** | VPS, Caddy (reverse proxy), scripts shell automatisés |
 
-## ⚡ Optimisations
+---
 
-- Caching agressif (Redis)
-- Pagination côté serveur
-- Compression des données
-- CDN pour les assets statiques`,
+## 🚀 Déploiement & DevOps
+
+- **Docker Compose** multi-profil : \`deps\` (MongoDB, Redis), \`core\` (API, Web), \`bot\` (Discord bot), \`workers\` (getplayers, scrapdynmap, scrappingapi)
+- **Healthchecks** sur tous les services
+- **Volumes nommés** pour persistance des \`node_modules\`
+- **Pipeline GitLab CI** automatisé : build des packages → vérification → build Docker → push registry → déploiement SSH sur VPS
+- **Déploiement conditionnel** par détection de changements (\`changes\` blocks)
+- **Scripts de déploiement** : \`deploy-aaron.sh\`, \`rollback.sh\`, \`setup-vps.sh\`
+- **Reverse proxy** Caddy avec configuration multi-domaine
+
+---
+
+## 📊 Chiffres clés
+
+- **3 001** serveurs Discord utilisateurs
+- **+218 000** commandes exécutées
+- **~2 030** pays suivis
+- **92 974** utilisateurs potentiels
+- **215 217** joueurs enregistrés
+- **18+** serveurs de jeu supportés (couleurs)
+- **8** files d'attente BullMQ
+- **20+** commandes slash Discord
+- **15+** types de notifications temps réel
+
+
+*Projet développé pour la communauté NationsGlory — 2021-2026*`,
     images: [
       {
-        src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1000&q=80',
+        src: '/src/assets/projects/aaron/connections.png',
         alt: 'Portfolio Analytics - Dashboard interactif',
         width: 1000,
-        height: 600,
+        height: 800,
       },
       {
-        src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
+        src: '/src/assets/projects/aaron/pillage.png',
         alt: 'Portfolio Analytics - Graphiques',
         width: 800,
         height: 600,
       },
     ],
     technologies: ['react', 'python', 'api', 'postgresql', 'docker', 'grafana', 'typescript'],
-    github: 'https://github.com/mathieu/portfolio-analytics',
-    gitlab: 'https://gitlab.com/mathieu/portfolio-analytics',
-    category: 'professionnel',
+    gitlab: 'https://gitlab.com/aaronngbot/aaron_monorepo',
+    website: 'https://aaronlem.ovh',
+    category: 'personnel',
   },
   {
     id: 3,
@@ -175,8 +261,76 @@ Application collaborative permettant à plusieurs utilisateurs de travailler ens
         height: 600,
       },
     ],
-    technologies: ['vue', 'nodejs', 'websocket', 'mongodb', 'aws', 'typescript', 'docker'],
+    technologies: ['vue', 'nodejs', 'websocket', 'api', 'docker', 'grafana', 'typescript', 'queues'],
     website: 'https://aaronlem.ovh',
-    category: 'personnel',
+    category: 'personnel'
+  },
+  {
+    id: 4,
+    title: 'Hackaton M2 Info',
+    description: 'Backend d\'une application de gestion de club sportif, avec une architecture multi-tenant et un moteur de planification avancé.',
+    fullDescription: `
+
+### 🏆 Project Overview: Multi-Sport Club Management API
+
+I've developped an sport app during a 5-day hackathon, with a team of 4 people. My job was to develop the backend of the application, with a focus on the architecture.
+The application is a management platform for a sports club, with a focus on training sessions and athlete performance monitoring.
+This robust REST API serves as the backbone for a sports club management platform. Originally designed for an Ultimate Frisbee club, the architecture was engineered to be **agnostic and multi-tenant**, allowing multiple clubs and various sports to coexist on the same infrastructure.
+
+---
+
+### 🛠️ Technical Stack
+*   **Framework:** NestJS (Node.js) with TypeScript
+*   **Database:** MySQL with TypeORM
+*   **Security:** JWT Authentication, Passport.js, Bcrypt
+*   **Documentation:** Swagger / Scalar (OpenAPI)
+*   **DevOps:** Docker & Docker Compose
+*   **Tools:** PNPM, Class-validator/transformer, ESLint/Prettier
+
+---
+
+### 🚀 Key Features & Implementation
+*   **Modular Multi-Tenant Architecture:** Implemented a system where clubs, groups, and athletes are isolated. Designed the database schema to support future scaling to multiple clubs and sports without structural changes.
+*   **Advanced RBAC (Role-Based Access Control):** 
+    *   Developed custom Guards (\`RolesGuard\`, \`InClubGuard\`) to enforce security policies.
+    *   Ensured that Presidents can only manage their own club, and Athletes can only access data relevant to their specific groups.
+*   **Session & Activity Engine:** 
+    *   Created a flexible planning system for training sessions and competitions.
+    *   Implemented a modular activity system where each exercise can track dynamic metrics (e.g., intensity, duration, specific sport-related measures).
+*   **Athlete Performance Monitoring:** 
+    *   Integrated training load analysis logic.
+    *   Added support for individual training thresholds (\`seuilEntrainement\`) to help coaches identify overtraining or under-training risks.
+*   **Clean Code & Maintainability:** 
+    *   Strict adherence to the **Repository Pattern** and **Data Mapper Pattern** to decouple business logic from database concerns.
+    *   Comprehensive DTO (Data Transfer Object) implementation for strict input validation and predictable API responses.
+
+---
+
+### 💡 Engineering Highlights
+*   **Extensibility by Design:** Used abstract base classes for users and association tables for groups, making it easy to transition from a single-role to a multi-role user system in the future.
+*   **Developer Experience:** Automated the environment setup with Docker and implemented a custom seeding system for rapid testing and demonstration.
+*   **Scalability:** The backend is optimized for complex queries using TypeORM’s QueryBuilder, ensuring performance even as the relationship graph between athletes, sessions, and clubs grows.
+
+---
+
+### 📂 Repository Structure
+*   [\`src/modules/\`](src/modules/): Cleanly separated business domains (Auth, Users, Sceance, Activites, Sports).
+*   [\`src/common/\`](src/common/): Shared infrastructure, including database configuration and global filters/guards.
+*   [\`Dockerfile\`](Dockerfile) & [\`docker-compose.yaml\`](docker-compose.yaml): Standardized production-ready environment.
+To view [Frontend code](https://github.com/Bigchef-dev/hackaton-back)`,
+    images: [{
+      src: '/src/assets/projects/hackaton/homepage.png',
+      alt: 'Hackaton M2 Info - Homepage of sportive dashboard',
+      width: 1000,
+      height: 600,
+    }, {
+      src: '/src/assets/projects/hackaton/swagger.png',
+      alt: 'Hackaton M2 Info - Swagger API Documentation',
+      width: 800,
+      height: 600,
+    }],
+    technologies: ['nestjs', 'sql', 'orm', 'api', 'auth', 'docker', 'typescript'],
+    github: 'https://github.com/Bigchef-dev/hackaton-back',
+    category: 'universitaire'
   },
 ];

@@ -79,7 +79,28 @@ export const SKILLS_DB = {
     name: 'Message Queues',
     color: 'from-teal-500/20 to-teal-500/10',
     border: 'border-teal-300',
-  }
+  },
+  nestjs: {
+    name: 'NestJS',
+    color: 'from-teal-500/20 to-teal-500/10',
+    border: 'border-teal-300',
+  },
+  sql: {
+    name: 'MySQL',
+    color: 'from-teal-500/20 to-teal-500/10',
+    border: 'border-teal-300',
+  },
+  orm: {
+    name: 'TypeORM',
+    color: 'from-teal-500/20 to-teal-500/10',
+    border: 'border-teal-300',
+  },
+  auth: {
+    name: 'Auth & Security',
+    color: 'from-teal-500/20 to-teal-500/10',
+    border: 'border-teal-300',
+  },
+
 } as const;
 
 export type SkillKey = keyof typeof SKILLS_DB;

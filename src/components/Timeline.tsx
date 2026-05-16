@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { GraduationCap, Briefcase } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { useLanguage } from '../hooks/useLanguage';
 import { timelineData, type TimelineEntry } from '../data/timeline';
 import type { TranslationKeys } from '../locales/translations';
@@ -48,7 +49,21 @@ function TimelineEntryCard({ entry }: { entry: TimelineEntry }) {
           {t(tKey(entry.id, 'company'))}
         </p>
         <div className="text-sm text-gray-600 leading-relaxed prose prose-sm max-w-none">
-          <ReactMarkdown>
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            components={{
+              table: ({ node, ...props }) => (
+                <div className="overflow-x-auto my-3">
+                  <table className="min-w-full border-collapse border border-gray-200 text-xs" {...props} />
+                </div>
+              ),
+              thead: ({ node, ...props }) => <thead className="bg-gray-50" {...props} />,
+              tbody: ({ node, ...props }) => <tbody {...props} />,
+              tr: ({ node, ...props }) => <tr className="border-b border-gray-200" {...props} />,
+              th: ({ node, ...props }) => <th className="px-3 py-1.5 text-left font-semibold text-gray-900 border border-gray-200" {...props} />,
+              td: ({ node, ...props }) => <td className="px-3 py-1.5 text-gray-600 border border-gray-200" {...props} />,
+            }}
+          >
             {t(tKey(entry.id, 'description'))}
           </ReactMarkdown>
         </div>

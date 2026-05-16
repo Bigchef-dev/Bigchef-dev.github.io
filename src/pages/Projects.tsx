@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { useLanguage } from '../hooks/useLanguage';
 import { ExternalLink, Code, X, Globe, GitBranch, ChevronLeft, ChevronRight } from 'lucide-react';
 import { SKILLS_DB, projects, type Project } from '../data';
@@ -136,6 +137,7 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
             <h3 className="text-lg font-semibold text-gray-900">À propos</h3>
             <div className="text-gray-600 leading-relaxed space-y-3">
               <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
                 components={{
                   h1: ({ node, ...props }) => <h1 className="text-2xl font-bold text-gray-900 mt-6 mb-3" {...props} />,
                   h2: ({ node, ...props }) => <h2 className="text-xl font-bold text-gray-800 mt-5 mb-2" {...props} />,
@@ -145,6 +147,16 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
                   li: ({ node, ...props }) => <li className="ml-2" {...props} />,
                   strong: ({ node, ...props }) => <strong className="text-gray-900 font-semibold" {...props} />,
                   em: ({ node, ...props }) => <em className="text-gray-700 italic" {...props} />,
+                  table: ({ node, ...props }) => (
+                    <div className="overflow-x-auto my-4">
+                      <table className="min-w-full border-collapse border border-gray-200 text-sm" {...props} />
+                    </div>
+                  ),
+                  thead: ({ node, ...props }) => <thead className="bg-gray-50" {...props} />,
+                  tbody: ({ node, ...props }) => <tbody {...props} />,
+                  tr: ({ node, ...props }) => <tr className="border-b border-gray-200" {...props} />,
+                  th: ({ node, ...props }) => <th className="px-4 py-2 text-left font-semibold text-gray-900 border border-gray-200" {...props} />,
+                  td: ({ node, ...props }) => <td className="px-4 py-2 text-gray-600 border border-gray-200" {...props} />,
                 }}
               >
                 {project.fullDescription}
