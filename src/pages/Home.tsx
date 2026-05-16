@@ -1,6 +1,7 @@
 import { useLanguage } from '../hooks/useLanguage';
 import { TechCircle } from '../components/TechCircle';
 import { MapPin, Download, Mail } from 'lucide-react';
+import resumePdf from '../assets/CV_MGUINCHE.pdf';
 
 const socialLinks = [
   {
@@ -72,7 +73,7 @@ export function Home() {
             {t('hero.cta_projects')}
           </button>
           <a
-            href="/CV_MGUINCHE.pdf"
+            href={resumePdf}
             download
             className="inline-flex items-center gap-2 px-6 py-3 border border-gray-200 text-gray-700 font-semibold rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-all"
           >
