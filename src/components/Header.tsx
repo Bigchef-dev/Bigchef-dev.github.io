@@ -48,8 +48,8 @@ export function Header() {
               onClick={() => scrollTo(section)}
               className={`transition-colors font-medium ${
                 activeSection === section
-                  ? 'text-teal-600'
-                  : 'text-gray-600 hover:text-teal-600'
+                  ? 'text-blue-600 underline'
+                  : 'text-gray-600 hover:text-blue-600 hover:underline'
               }`}
             >
               {t(`nav.${section}`)}

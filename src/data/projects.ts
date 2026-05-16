@@ -333,4 +333,37 @@ To view [Frontend code](https://github.com/Bigchef-dev/hackaton-back)`,
     github: 'https://github.com/Bigchef-dev/hackaton-back',
     category: 'universitaire'
   },
+  {
+    id: 5,
+    title: 'Telegram MCP Server & Client',
+    description: 'Serveur et client de messagerie instantanée sécurisé, avec chiffrement end-to-end et fonctionnalités avancées de gestion de contacts.',
+    fullDescription: `**Résumé du projet**
+
+- **Titre**: Client Telegram MCP — bot NestJS pour opérations Model Context Protocol.  
+- **Accroche**: Bot Telegram modulaire qui connecte des utilisateurs à des agents IA via MCP pour dialogues contextuels et persistance mémoire.  
+- **Rôle**: Conception et implémentation backend (NestJS), intégration Mastra, gestion du bot Telegram et architecture de handlers modulaires.  
+- **Technologies**: NestJS, TypeScript, Telegraf, Mastra (@mastra/core), Zod, LibSQL (pour mémoire), pnpm.  
+- **Points clés techniques**: Architecture sans serveur HTTP (createApplicationContext), handlers de commandes et d'événements modulaires, service \`MastraService\` pour orchestrer agents/outils/workflows, système de mémoire conversationnelle persistant, registres dynamiques de handlers.  
+- **Fonctionnalités notables**: commandes Telegram prêtes (\`/start\`, \`/help\`, \`/status\`, \`/ping\`, \`/mastra\`, \`/memory\`, \`/clear_memory\`), traitement de messages via Mastra, persistance automatique des conversations, gestion d’erreurs et médias (voix, images).  
+- **Impact & valeur**: Permet d’exposer des capacités MCP via une interface familière (Telegram), facilite essais d’agents IA et prototypage rapide d’interactions conversationnelles avec mémoire utilisateur persistante.  
+- **Comment démarrer**: installer dépendances puis lancer en dev:
+  - \`pnpm install\`
+  - \`pnpm start:dev\`
+- **Fichiers clés**: main.ts, app.module.ts, telegram.service.ts, mastra.module.ts, user-memory.service.ts.`,
+    images: [{
+      src: '/src/assets/projects/telegram-mcp/1.png',
+      alt: 'Telegram MCP Server & Client - Interface de chat Telegram'
+    }, {
+      src: '/src/assets/projects/telegram-mcp/2.png',
+      alt: 'Telegram MCP Server & Client - Diagramme d\'architecture'
+    }, {
+      src: '/src/assets/projects/telegram-mcp/3.png',
+      alt: 'Telegram MCP Server & Client - Exemple de conversation avec un agent IA'
+    }, {
+      src: '/src/assets/projects/telegram-mcp/4.png',
+      alt: 'Telegram MCP Server & Client - Commandes Telegram disponibles'
+    }],
+    technologies: ['nestjs', 'typescript', 'api', 'docker', 'mcp', 'mistral-ai', 'agentic'],
+    category: 'personnel'
+  }
 ];

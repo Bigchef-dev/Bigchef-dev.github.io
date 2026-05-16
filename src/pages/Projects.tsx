@@ -30,6 +30,7 @@ interface ProjectModalProps {
 
 function ProjectModal({ project, onClose }: ProjectModalProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
 
   if (!project) return null;
 
@@ -67,11 +68,12 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
         </div>
 
         {/* Image Carousel */}
-        <div className="relative w-full h-64 overflow-hidden bg-gray-100">
+        <div className="relative w-full h-64 overflow-hidden bg-gray-100 group">
           <img
             src={images[currentImageIndex].src}
             alt={images[currentImageIndex].alt}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover cursor-pointer"
+            onClick={() => setLightboxImage(images[currentImageIndex].src)}
           />
 
           {/* Gradient overlay at bottom */}
@@ -147,6 +149,18 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
                   li: ({ node, ...props }) => <li className="ml-2" {...props} />,
                   strong: ({ node, ...props }) => <strong className="text-gray-900 font-semibold" {...props} />,
                   em: ({ node, ...props }) => <em className="text-gray-700 italic" {...props} />,
+                  a: ({ node, ...props }) => (
+                    <a className="text-blue-600 underline hover:text-blue-800 transition-colors" target="_blank" rel="noopener noreferrer" {...props} />
+                  ),
+                  img: ({ node, src, alt, ...props }) => (
+                    <img
+                      src={src}
+                      alt={alt}
+                      className="rounded-lg border border-gray-200 my-2 cursor-pointer hover:opacity-80 transition-opacity max-w-full h-auto"
+                      onClick={() => setLightboxImage(src ?? null)}
+                      {...props}
+                    />
+                  ),
                   table: ({ node, ...props }) => (
                     <div className="overflow-x-auto my-4">
                       <table className="min-w-full border-collapse border border-gray-200 text-sm" {...props} />
@@ -163,6 +177,28 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
               </ReactMarkdown>
             </div>
           </div>
+
+          {/* Lightbox for markdown images */}
+          {lightboxImage && (
+            <div
+              className="fixed inset-0 z-[60] bg-black/80 flex items-center justify-center p-4"
+              onClick={() => setLightboxImage(null)}
+            >
+              <button
+                onClick={() => setLightboxImage(null)}
+                className="absolute top-4 right-4 text-white/80 hover:text-white text-3xl font-light transition-colors z-10"
+                aria-label="Fermer"
+              >
+                ✕
+              </button>
+              <img
+                src={lightboxImage}
+                alt=""
+                className="max-w-full max-h-[90vh] object-contain rounded-lg"
+                onClick={(e) => e.stopPropagation()}
+              />
+            </div>
+          )}
 
           {/* Skills */}
           <div className="space-y-3">

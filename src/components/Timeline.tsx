@@ -52,6 +52,18 @@ function TimelineEntryCard({ entry }: { entry: TimelineEntry }) {
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             components={{
+              a: ({ node, ...props }) => (
+                <a className="text-blue-600 underline hover:text-blue-800 transition-colors" target="_blank" rel="noopener noreferrer" {...props} />
+              ),
+              img: ({ node, src, alt, ...props }) => (
+                <img
+                  src={src}
+                  alt={alt}
+                  className="rounded-lg border border-gray-200 my-2 cursor-pointer hover:opacity-80 transition-opacity max-w-full h-auto"
+                  onClick={() => setSelectedImage(src ?? null)}
+                  {...props}
+                />
+              ),
               table: ({ node, ...props }) => (
                 <div className="overflow-x-auto my-3">
                   <table className="min-w-full border-collapse border border-gray-200 text-xs" {...props} />

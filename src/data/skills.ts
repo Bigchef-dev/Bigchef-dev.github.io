@@ -100,7 +100,26 @@ export const SKILLS_DB = {
     color: 'from-teal-500/20 to-teal-500/10',
     border: 'border-teal-300',
   },
-
+  'mistral-ai': {
+    name: 'Mistral AI',
+    color: 'from-teal-500/20 to-teal-500/10',
+    border: 'border-teal-300',
+  },
+  mcp: {
+    name: 'MCP',
+    color: 'from-teal-500/20 to-teal-500/10',
+    border: 'border-teal-300',
+  },
+  rag: {
+    name: 'RAG',
+    color: 'from-teal-500/20 to-teal-500/10',
+    border: 'border-teal-300',
+  },
+  agentic: {
+    name: 'Agentic',
+    color: 'from-teal-500/20 to-teal-500/10',
+    border: 'border-teal-300',
+  },
 } as const;
 
 export type SkillKey = keyof typeof SKILLS_DB;
