@@ -26,11 +26,11 @@ const CATEGORY_BADGES: Record<Category, { label: string; icon: string }> = {
 interface ProjectModalProps {
   project: Project | null;
   onClose: () => void;
+  onImageClick: (src: string) => void;
 }
 
-function ProjectModal({ project, onClose }: ProjectModalProps) {
+function ProjectModal({ project, onClose, onImageClick }: ProjectModalProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
 
   if (!project) return null;
 
@@ -73,11 +73,18 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
             src={images[currentImageIndex].src}
             alt={images[currentImageIndex].alt}
             className="w-full h-full object-cover cursor-pointer"
-            onClick={() => setLightboxImage(images[currentImageIndex].src)}
+            onClick={() => onImageClick(images[currentImageIndex].src)}
           />
 
           {/* Gradient overlay at bottom */}
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/60 pointer-events-none" />
+
+          {/* Image caption just above position indicator */}
+          <div className="absolute bottom-12 left-0 right-0 flex items-center justify-center pointer-events-none">
+            <p className="text-xs text-white font-medium px-3 py-1.5 rounded-lg bg-black/40 backdrop-blur-sm max-w-[70%] text-center truncate">
+              {images[currentImageIndex].alt}
+            </p>
+          </div>
 
           {/* Navigation Chevrons */}
           {hasMultipleImages && (
@@ -156,8 +163,7 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
                     <img
                       src={src}
                       alt={alt}
-                      className="rounded-lg border border-gray-200 my-2 cursor-pointer hover:opacity-80 transition-opacity max-w-full h-auto"
-                      onClick={() => setLightboxImage(src ?? null)}
+                      className="rounded-lg border border-gray-200 my-2 max-w-full h-auto"
                       {...props}
                     />
                   ),
@@ -177,28 +183,6 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
               </ReactMarkdown>
             </div>
           </div>
-
-          {/* Lightbox for markdown images */}
-          {lightboxImage && (
-            <div
-              className="fixed inset-0 z-[60] bg-black/80 flex items-center justify-center p-4"
-              onClick={() => setLightboxImage(null)}
-            >
-              <button
-                onClick={() => setLightboxImage(null)}
-                className="absolute top-4 right-4 text-white/80 hover:text-white text-3xl font-light transition-colors z-10"
-                aria-label="Fermer"
-              >
-                ✕
-              </button>
-              <img
-                src={lightboxImage}
-                alt=""
-                className="max-w-full max-h-[90vh] object-contain rounded-lg"
-                onClick={(e) => e.stopPropagation()}
-              />
-            </div>
-          )}
 
           {/* Skills */}
           <div className="space-y-3">
@@ -291,6 +275,7 @@ export function Projects() {
   const { t } = useLanguage();
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [activeCategory, setActiveCategory] = useState<'all' | Category>('all');
+  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
 
   const filteredProjects = activeCategory === 'all'
     ? projects
@@ -410,7 +395,29 @@ export function Projects() {
       </div>
 
       {/* Modal */}
-      <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
+      <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} onImageClick={setLightboxImage} />
+
+      {/* Global lightbox (outside modal to overlay everything) */}
+      {lightboxImage && (
+        <div
+          className="fixed inset-0 z-[70] bg-black/80 flex items-center justify-center p-4"
+          onClick={() => setLightboxImage(null)}
+        >
+          <button
+            onClick={() => setLightboxImage(null)}
+            className="absolute top-4 right-4 text-white/80 hover:text-white text-3xl font-light transition-colors z-10"
+            aria-label="Fermer"
+          >
+            ✕
+          </button>
+          <img
+            src={lightboxImage}
+            alt=""
+            className="max-w-full max-h-[90vh] object-contain rounded-lg"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </section>
   );
 }

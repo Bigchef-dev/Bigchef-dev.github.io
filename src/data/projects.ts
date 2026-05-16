@@ -362,28 +362,28 @@ To view [Frontend code](https://github.com/Bigchef-dev/hackaton-back)`,
 - **Fichiers clés**: main.ts, app.module.ts, telegram.service.ts, mastra.module.ts, user-memory.service.ts.`,
     images: [{
       src: '/src/assets/projects/telegram-mcp/1.png',
-      alt: 'Telegram MCP Server & Client - Interface de chat Telegram'
+      alt: 'Telegram MCP Server & Client'
     }, {
       src: '/src/assets/projects/telegram-mcp/2.png',
-      alt: 'Telegram MCP Server & Client - Diagramme d\'architecture'
+      alt: 'Telegram MCP Server & Client'
     }, {
       src: '/src/assets/projects/telegram-mcp/3.png',
-      alt: 'Telegram MCP Server & Client - Exemple de conversation avec un agent IA'
+      alt: 'Telegram MCP Server & Client'
     }, {
       src: '/src/assets/projects/telegram-mcp/4.png',
-      alt: 'Telegram MCP Server & Client - Commandes Telegram disponibles'
+      alt: 'Telegram MCP Server & Client'
     }],
     technologies: ['nestjs', 'typescript', 'api', 'docker', 'mcp', 'mistral-ai', 'agentic'],
     category: 'personnel'
   },
   {
     id: 6,
-    title: 'Embedding Search System',
+    title: 'Bio4T - Embedding Search System',
     description: 'Système de recherche d\'embedding avec génération augmentée afin d\'annoter une tâche décrite afin de d\'améliorer les requêtes à un outil de veille scientifique.',
     fullDescription: `Réalisé durant mon Master 1, ce projet de recherche avait pour objectif de développer un système de recherche d'embeddings avec génération augmentée pour améliorer les requêtes à un outil de veille scientifique. Le projet a été conçu pour permettre aux chercheurs de trouver plus efficacement des techniques en bioinformatique.`,
     images: [{
       src: '/src/assets/projects/bio4t/bio4t.png',
-      alt: 'Embedding Search System - Interface de recherche d\'embeddings'
+      alt: 'Bio4T - Interface de recherche d\'embeddings'
     }],
     technologies: ['python', 'api', 'docker', 'mistral-ai', 'rag', 'neo4j'],
     category: 'universitaire'
@@ -411,10 +411,10 @@ To view [Frontend code](https://github.com/Bigchef-dev/hackaton-back)`,
       alt: 'Réponse de résolution à un ticket nouvellement créé'
     }, {
       src: '/src/assets/projects/gepetto/parent-doc-retrieval.png',
-      alt: 'Explication du Parent-Document-Retrieval (hiérarchique) améliorer les réponses de Gepetto'
+      alt: 'Explication du Parent-Document-Retrieval (hiérarchique) améliorer les réponses'
     }, {
       src: '/src/assets/projects/gepetto/grafana.png',
-      alt: 'Suivi des traces sur un board grafana pour monitorer les interactions avec Gepetto et identifier les axes d\'amélioration'
+      alt: 'Suivi des traces sur un board grafana pour monitorer les interactions'
     }, {
       src: '/src/assets/projects/gepetto/timeline.png',
       alt: 'Suivi de l\'éxécution d\'une requête à Gepetto'
