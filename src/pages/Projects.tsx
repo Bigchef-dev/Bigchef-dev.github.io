@@ -16,11 +16,11 @@ const CATEGORIES: { key: 'all' | Category; labelKey: TranslationKeys; icon: stri
   { key: 'associatif', labelKey: 'projects.filters.associatif', icon: '🤝' },
 ];
 
-const CATEGORY_BADGES: Record<Category, { label: string; icon: string }> = {
-  professionnel: { label: 'Professionnel', icon: '💼' },
-  personnel: { label: 'Personnel', icon: '🎨' },
-  universitaire: { label: 'Universitaire', icon: '🎓' },
-  associatif: { label: 'Associatif', icon: '🤝' },
+const CATEGORY_BADGES: Record<Category, { labelKey: TranslationKeys; icon: string }> = {
+  professionnel: { labelKey: 'projects.filters.professionnel', icon: '💼' },
+  personnel: { labelKey: 'projects.filters.personnel', icon: '🎨' },
+  universitaire: { labelKey: 'projects.filters.universitaire', icon: '🎓' },
+  associatif: { labelKey: 'projects.filters.associatif', icon: '🤝' },
 };
 
 interface ProjectModalProps {
@@ -31,6 +31,7 @@ interface ProjectModalProps {
 
 function ProjectModal({ project, onClose, onImageClick }: ProjectModalProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const { t, language } = useLanguage();
 
   if (!project) return null;
 
@@ -47,6 +48,8 @@ function ProjectModal({ project, onClose, onImageClick }: ProjectModalProps) {
     setCurrentImageIndex((prev) => (prev < images.length - 1 ? prev + 1 : prev));
   };
 
+  const currentAlt = images[currentImageIndex].alt[language] ?? images[currentImageIndex].alt.fr;
+
   return (
     <div 
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/20 backdrop-blur-sm"
@@ -62,6 +65,7 @@ function ProjectModal({ project, onClose, onImageClick }: ProjectModalProps) {
           <button
             onClick={onClose}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors text-gray-500"
+            aria-label={t('projects.ui.close')}
           >
             <X size={24} />
           </button>
@@ -71,7 +75,7 @@ function ProjectModal({ project, onClose, onImageClick }: ProjectModalProps) {
         <div className="relative w-full h-64 overflow-hidden bg-gray-100 group">
           <img
             src={images[currentImageIndex].src}
-            alt={images[currentImageIndex].alt}
+            alt={currentAlt}
             className="w-full h-full object-cover cursor-pointer"
             onClick={() => onImageClick(images[currentImageIndex].src)}
           />
@@ -82,7 +86,7 @@ function ProjectModal({ project, onClose, onImageClick }: ProjectModalProps) {
           {/* Image caption just above position indicator */}
           <div className="absolute bottom-12 left-0 right-0 flex items-center justify-center pointer-events-none">
             <p className="text-xs text-white font-medium px-3 py-1.5 rounded-lg bg-black/40 backdrop-blur-sm max-w-[70%] text-center truncate">
-              {images[currentImageIndex].alt}
+              {currentAlt}
             </p>
           </div>
 
@@ -98,7 +102,7 @@ function ProjectModal({ project, onClose, onImageClick }: ProjectModalProps) {
                     ? 'opacity-30 cursor-not-allowed'
                     : 'opacity-100 hover:scale-105'
                 }`}
-                aria-label="Image précédente"
+                aria-label={t('projects.ui.imagePrevious')}
               >
                 <ChevronLeft size={24} className="text-gray-700" />
               </button>
@@ -112,7 +116,7 @@ function ProjectModal({ project, onClose, onImageClick }: ProjectModalProps) {
                     ? 'opacity-30 cursor-not-allowed'
                     : 'opacity-100 hover:scale-105'
                 }`}
-                aria-label="Image suivante"
+                aria-label={t('projects.ui.imageNext')}
               >
                 <ChevronRight size={24} className="text-gray-700" />
               </button>
@@ -137,13 +141,13 @@ function ProjectModal({ project, onClose, onImageClick }: ProjectModalProps) {
                 associatif: 'bg-teal-50 border-teal-300 text-teal-700',
               }[project.category]
             }`}>
-              {CATEGORY_BADGES[project.category].icon} {CATEGORY_BADGES[project.category].label}
+              {CATEGORY_BADGES[project.category].icon} {t(CATEGORY_BADGES[project.category].labelKey)}
             </span>
           </div>
 
           {/* Full Description */}
           <div className="space-y-3">
-            <h3 className="text-lg font-semibold text-gray-900">À propos</h3>
+            <h3 className="text-lg font-semibold text-gray-900">{t('projects.ui.about')}</h3>
             <div className="text-gray-600 leading-relaxed space-y-3">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
@@ -152,7 +156,7 @@ function ProjectModal({ project, onClose, onImageClick }: ProjectModalProps) {
                   h2: ({ node, ...props }) => <h2 className="text-xl font-bold text-gray-800 mt-5 mb-2" {...props} />,
                   h3: ({ node, ...props }) => <h3 className="text-lg font-semibold text-gray-700 mt-4 mb-2" {...props} />,
                   p: ({ node, ...props }) => <p className="text-gray-600 mb-3" {...props} />,
-                  ul: ({ node, ...props }) => <ul className="list-disc list-inside space-y-1 mb-3 text-gray-600 text-justify" {...props} />,
+                  ul: ({ node, ...props }) => <ul className="list-disc list-inside space-y-1 mb-3 text-gray-600" {...props} />,
                   li: ({ node, ...props }) => <li className="ml-2" {...props} />,
                   strong: ({ node, ...props }) => <strong className="text-gray-900 font-semibold" {...props} />,
                   em: ({ node, ...props }) => <em className="text-gray-700 italic" {...props} />,
@@ -179,14 +183,14 @@ function ProjectModal({ project, onClose, onImageClick }: ProjectModalProps) {
                   td: ({ node, ...props }) => <td className="px-4 py-2 text-gray-600 border border-gray-200" {...props} />,
                 }}
               >
-                {project.fullDescription}
+                {project.fullDescriptionEn && language === 'en' ? project.fullDescriptionEn : project.fullDescription}
               </ReactMarkdown>
             </div>
           </div>
 
           {/* Skills */}
           <div className="space-y-3">
-            <h3 className="text-lg font-semibold text-gray-900">Technologies utilisées</h3>
+            <h3 className="text-lg font-semibold text-gray-900">{t('projects.ui.technologies')}</h3>
             <div className="flex flex-wrap gap-2">
               {project.technologies.map((tech) => {
                 const skillInfo = SKILLS_DB[tech];
@@ -204,7 +208,7 @@ function ProjectModal({ project, onClose, onImageClick }: ProjectModalProps) {
 
           {/* Links */}
           <div className="space-y-3 pt-4">
-            <h3 className="text-lg font-semibold text-gray-900">Liens</h3>
+            <h3 className="text-lg font-semibold text-gray-900">{t('projects.ui.links')}</h3>
             <div className="flex flex-wrap gap-3">
               {project.github && (
                 <a
@@ -236,7 +240,7 @@ function ProjectModal({ project, onClose, onImageClick }: ProjectModalProps) {
                   className="flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-200 hover:border-teal-300 hover:bg-teal-50 text-sm font-semibold text-gray-700 hover:text-teal-600 transition-all"
                 >
                   <Globe size={16} />
-                  Voir le site
+                  {t('projects.ui.viewSite')}
                 </a>
               )}
               {project.demo && (
@@ -247,7 +251,7 @@ function ProjectModal({ project, onClose, onImageClick }: ProjectModalProps) {
                   className="flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-200 hover:border-teal-300 hover:bg-teal-50 text-sm font-semibold text-gray-700 hover:text-teal-600 transition-all"
                 >
                   <ExternalLink size={16} />
-                  Demo
+                  {t('projects.ui.demo')}
                 </a>
               )}
               {project.files?.map((file, index) => (
@@ -272,7 +276,7 @@ function ProjectModal({ project, onClose, onImageClick }: ProjectModalProps) {
 }
 
 export function Projects() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [activeCategory, setActiveCategory] = useState<'all' | Category>('all');
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
@@ -316,80 +320,86 @@ export function Projects() {
 
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProjects.map((project) => (
-            <div
-              key={project.id}
-              className="group cursor-pointer"
-              onClick={() => {
-                setSelectedProject(project);
-              }}
-            >
-              {/* Project Image Thumbnail */}
-              <div className="relative h-48 rounded-t-lg overflow-hidden mb-0">
-                <img
-                  src={project.images[0].src}
-                  alt={project.images[0].alt}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-white/80 to-transparent opacity-60" />
-              </div>
+          {filteredProjects.map((project) => {
+            const projectTitleKey = `projects.entries.${project.id}.title` as TranslationKeys;
+            const projectDescKey = `projects.entries.${project.id}.description` as TranslationKeys;
+            const firstImageAlt = project.images[0].alt[language] ?? project.images[0].alt.fr;
 
-              {/* Project Card */}
-              <div className="bg-white border border-gray-200 rounded-b-lg p-6 flex flex-col h-auto shadow-sm hover:shadow-md transition-shadow overflow-hidden break-words">
-                {/* Category Badge */}
-                <div className="flex gap-2 mb-3">
-                  <span className={`px-2 py-0.5 rounded-full text-xs font-semibold border ${
-                    {
-                      professionnel: 'bg-teal-50 border-teal-300 text-teal-700',
-                      personnel: 'bg-teal-50 border-teal-300 text-teal-700',
-                      universitaire: 'bg-teal-50 border-teal-300 text-teal-700',
-                      associatif: 'bg-teal-50 border-teal-300 text-teal-700',
-                    }[project.category]
-                  }`}>
-                    {CATEGORY_BADGES[project.category].icon} {CATEGORY_BADGES[project.category].label}
-                  </span>
+            return (
+              <div
+                key={project.id}
+                className="group cursor-pointer"
+                onClick={() => {
+                  setSelectedProject(project);
+                }}
+              >
+                {/* Project Image Thumbnail */}
+                <div className="relative h-48 rounded-t-lg overflow-hidden mb-0">
+                  <img
+                    src={project.images[0].src}
+                    alt={firstImageAlt}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-white/80 to-transparent opacity-60" />
                 </div>
 
-                <h3 className="text-xl font-bold text-teal-700 mb-3 group-hover:opacity-80 transition-opacity">
-                  {project.title}
-                </h3>
-                <p className="text-gray-600 mb-4 flex-grow text-sm">
-                  {project.description}
-                </p>
-
-                {/* Tech tags */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.slice(0, 3).map((tech) => {
-                    const skillInfo = SKILLS_DB[tech];
-                    return (
-                      <span
-                        key={tech}
-                        className={`px-2 py-1 text-xs font-semibold rounded-full border ${skillInfo.border} bg-gradient-to-br ${skillInfo.color} text-gray-700`}
-                      >
-                        {skillInfo.name}
-                      </span>
-                    );
-                  })}
-                  {project.technologies.length > 3 && (
-                    <span className="px-2 py-1 text-xs font-semibold rounded-full border border-gray-200 text-gray-500">
-                      +{project.technologies.length - 3}
+                {/* Project Card */}
+                <div className="bg-white border border-gray-200 rounded-b-lg p-6 flex flex-col h-auto shadow-sm hover:shadow-md transition-shadow overflow-hidden break-words">
+                  {/* Category Badge */}
+                  <div className="flex gap-2 mb-3">
+                    <span className={`px-2 py-0.5 rounded-full text-xs font-semibold border ${
+                      {
+                        professionnel: 'bg-teal-50 border-teal-300 text-teal-700',
+                        personnel: 'bg-teal-50 border-teal-300 text-teal-700',
+                        universitaire: 'bg-teal-50 border-teal-300 text-teal-700',
+                        associatif: 'bg-teal-50 border-teal-300 text-teal-700',
+                      }[project.category]
+                    }`}>
+                      {CATEGORY_BADGES[project.category].icon} {t(CATEGORY_BADGES[project.category].labelKey)}
                     </span>
-                  )}
-                </div>
+                  </div>
 
-                {/* View Details Button */}
-                <button className="w-full px-4 py-2 rounded-lg border border-gray-200 hover:border-teal-300 hover:bg-teal-50 text-sm font-semibold text-gray-700 hover:text-teal-600 transition-all">
-                  Voir les détails →
-                </button>
+                  <h3 className="text-xl font-bold text-teal-700 mb-3 group-hover:opacity-80 transition-opacity">
+                    {t(projectTitleKey)}
+                  </h3>
+                  <p className="text-gray-600 mb-4 flex-grow text-sm">
+                    {t(projectDescKey)}
+                  </p>
+
+                  {/* Tech tags */}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.technologies.slice(0, 3).map((tech) => {
+                      const skillInfo = SKILLS_DB[tech];
+                      return (
+                        <span
+                          key={tech}
+                          className={`px-2 py-1 text-xs font-semibold rounded-full border ${skillInfo.border} bg-gradient-to-br ${skillInfo.color} text-gray-700`}
+                        >
+                          {skillInfo.name}
+                        </span>
+                      );
+                    })}
+                    {project.technologies.length > 3 && (
+                      <span className="px-2 py-1 text-xs font-semibold rounded-full border border-gray-200 text-gray-500">
+                        +{project.technologies.length - 3}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* View Details Button */}
+                  <button className="w-full px-4 py-2 rounded-lg border border-gray-200 hover:border-teal-300 hover:bg-teal-50 text-sm font-semibold text-gray-700 hover:text-teal-600 transition-all">
+                    {t('projects.ui.viewDetails')}
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Empty state */}
         {filteredProjects.length === 0 && (
           <div className="text-center py-20 text-gray-400">
-            <p className="text-lg">Aucun projet trouvé pour cette catégorie.</p>
+            <p className="text-lg">{t('projects.ui.emptyState')}</p>
           </div>
         )}
       </div>
@@ -406,7 +416,7 @@ export function Projects() {
           <button
             onClick={() => setLightboxImage(null)}
             className="absolute top-4 right-4 text-white/80 hover:text-white text-3xl font-light transition-colors z-10"
-            aria-label="Fermer"
+            aria-label={t('projects.ui.close')}
           >
             ✕
           </button>

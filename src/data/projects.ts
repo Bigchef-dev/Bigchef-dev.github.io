@@ -5,7 +5,7 @@ import { SkillKey } from './skills';
  */
 export interface ProjectImage {
   src: string;
-  alt: string;
+  alt: { fr: string; en: string };
   width?: number;
   height?: number;
 }
@@ -27,6 +27,7 @@ export interface Project {
   title: string;
   description: string;
   fullDescription: string;
+  fullDescriptionEn?: string;
   images: ProjectImage[];
   technologies: SkillKey[];
   github?: string;
@@ -56,21 +57,32 @@ export const projects: Project[] = [
   Le projet a été initialisé avec un premier prototype ; ma tâche a consisté à concevoir une architecture robuste et modulaire, intégrant des fonctionnalités avancées de RAG (Parent-Document-Retrieval, raisonnement). Ce projet m'a beaucoup appris sur les systèmes de dialogue basés sur des LLMs et m'a permis d'explorer en profondeur les techniques de RAG.
 
   Ma contribution, d'abord prévue pour le support client, a rapidement été étendue pour fournir des réponses aux développeurs à partir des documentations techniques des projets.`,
+    fullDescriptionEn: `### Context
+
+  This project was developed as part of my M1 internship.
+
+  Gepetto is an advanced AI chatbot using Retrieval-Augmented Generation (RAG) to provide precise and contextual answers, available within the internal Slack.
+
+  ### Contribution
+
+  The project was initialized with a first prototype; my task was to design a robust and modular architecture, integrating advanced RAG features (Parent-Document-Retrieval, reasoning). This project taught me a lot about LLM-based dialogue systems and allowed me to deeply explore RAG techniques.
+
+  My contribution, initially planned for customer support, was quickly extended to provide answers to developers based on project technical documentation.`,
     images: [{
       src: '/src/assets/projects/gepetto/conversation.png',
-      alt: 'Interface de chat avec Gepetto'
+      alt: { fr: 'Interface de chat avec Gepetto', en: 'Chat interface with Gepetto' }
     }, {
       src: '/src/assets/projects/gepetto/ticket.png',
-      alt: 'Réponse de résolution à un ticket nouvellement créé'
+      alt: { fr: 'Réponse de résolution à un ticket nouvellement créé', en: 'Ticket resolution response' }
     }, {
       src: '/src/assets/projects/gepetto/parent-doc-retrieval.png',
-      alt: 'Explication du Parent-Document-Retrieval (hiérarchique) améliorer les réponses'
+      alt: { fr: 'Explication du Parent-Document-Retrieval (hiérarchique) améliorer les réponses', en: 'Parent-Document-Retrieval explanation' }
     }, {
       src: '/src/assets/projects/gepetto/grafana.png',
-      alt: 'Suivi des traces sur un board grafana pour monitorer les interactions'
+      alt: { fr: 'Suivi des traces sur un board grafana pour monitorer les interactions', en: 'Grafana trace monitoring board' }
     }, {
       src: '/src/assets/projects/gepetto/timeline.png',
-      alt: 'Suivi de l\'éxécution d\'une requête à Gepetto'
+      alt: { fr: 'Suivi de l\'éxécution d\'une requête à Gepetto', en: 'Request execution timeline' }
     }],
     technologies: ['typescript', 'api', 'docker', 'mistral-ai', 'rag', 'langchain', 'agentic', 'sql', 'nestjs'],
     category: 'professionnel'
@@ -193,16 +205,130 @@ Application web en **Vue 3** avec **Vue Router**, **Vuex**, et **Naive UI** (th�
 
 
 *Projet développé pour la communauté NationsGlory — 2021-2026*`,
+    fullDescriptionEn: `# Aaron — Service Ecosystem for NationsGlory
+
+> A complete monorepo orchestrating a Discord bot, a REST API, a web front-end, and a fleet of scraping workers, serving the **NationsGlory** community (Minecraft server).
+
+---
+
+## 🧠 Overview
+
+**Aaron** is a multi-service assistant integrated into the **NationsGlory** Minecraft game ecosystem. It allows players to consult real-time game data (players, countries, factions, raids, HDV), configure alerts and notifications, and analyze server activity — all from **Discord** or a **web interface**.
+
+The project is structured as a **monorepo** (pnpm workspaces) containing **7 applications** and **2 shared packages**, deployed via **Docker** and **GitLab CI/CD**.
+
+## 📦 Applications
+
+### 🔹 REST API — [\`apps/api\`](aaron_monorepo/apps/api) — v3.0.0
+
+Central backend in **Express.js / TypeScript** connected to **MongoDB** (Mongoose) and **Redis** (ioredis).
+
+- **OAuth2 Authentication** via Discord and NationsGlory (Passport.js)
+- **Job queue** with **BullMQ** (8 queues: countries, players, Discord events, scraping…)
+- **Queue monitoring** via **Bull Board** (web interface \`/queues\`)
+- **Swagger / OpenAPI Documentation**
+- **Prometheus metrics** (\`prom-client\`)
+- **Integrated workers**: scrapping-api-country, scrapping-api-player, connected-players
+- **Endpoints**: colors, connected players, countries, empires, HDV events, desertions, raids, espionage, wars, storage…
+
+### 🔹 Discord Bot — [\`apps/discordv3\`](aaron_monorepo/apps/discordv3) — v3.0.0
+
+Discord bot named **"Aaron the Mercenary"**, developed with **discord.js v14** in **sharded** architecture (clusters).
+
+- **20+ slash commands**: \`/player\`, \`/country\`, \`/top-player\`, \`/top-country\`, \`/pillage\`, \`/hdv\`, \`/online\`, \`/network-connected\`, \`/colonie-rentable\`, \`/config\`, \`/alertes\`, \`/disbands\`, \`/coords\`, \`/canvas\`, \`/random-player\`, \`/random-country\`, \`/staffng-*\`…
+- **User commands** and **message commands** (context menu)
+- **Real-time notification system**: raid alerts, desertions, wars, espionage, targeting end, player arrival/departure, HDV expirations, ratings, role assignments
+- **BullMQ workers**: Discord event processing (guild and user)
+- **Language system** (French, English US/GB)
+- **Permission management** and related roles
+- **Internal HTTP API** for communication with the master process
+- **Collectors** with interactive pagination (buttons)
+
+### 🔹 Web Front-end — [\`apps/web\`](aaron_monorepo/apps/web) — v4.0.0
+
+Web application in **Vue 3** with **Vue Router**, **Vuex**, and **Naive UI** (custom dark orange theme).
+
+- **Pages**: Home (live statistics), Player, Country (with Dynmap iframe), Profile (account, NationsGlory, guilds), Commands, Raids, Team, Login, Log Tool
+- **SSO**: Login via Discord OAuth2 and NationsGlory
+- **Guild configuration**: tabs for General, Targeted Countries, Espionage, HDV (with server, channel, role, price range selectors)
+- **Minecraft client log analysis** tool (parses NG logs with color codes)
+- **Color palette** for 18+ servers (blue, orange, yellow, black, cyan, lime, coral, pink, alpha, sigma, omega, purple, green, red, delta, mocha, epsilon, jade)
+- **Global search bar** with tags and server selector
+
+### 🔹 Scraping Workers
+
+| Application | Technology | Role |
+|---|---|---|
+| [\`scrapdynmap\`](aaron_monorepo/apps/scrapdynmap) | Node.js / BullMQ | Scrapes Dynmap tiles from NG servers (Earth, Moon, Mars, Edora) and extracts faction data (level, power, bank, members…) |
+| [\`scrappingapi\`](aaron_monorepo/apps/scrappingapi) | NestJS / BullMQ | Scraping service with job selector (country / player) |
+| [\`yoxo-scrappingapi\`](aaron_monorepo/apps/yoxo-scrappingapi) | TypeScript / BullMQ | Daily scheduled scraping via Yoxo SDK API |
+| [\`getplayers\`](aaron_monorepo/apps/getplayers) | Node.js / BullMQ | Real-time connected player retrieval |
+| [\`fetchScrapping\`](aaron_monorepo/apps/fetchScrapping) | TypeScript | Country scraping via fetch for better efficiency |
+
+---
+
+## 📚 Shared Packages
+
+- **\`@monorepo/api-client\`** — HTTP Client SDK for NationsGlory API with authentication (email/password), automatic token reconnection, dynmap and serverColors modules
+- **\`@monorepo/types\`** — Shared TypeScript types between apps
+
+---
+
+## 🛠️ Tech Stack
+
+| Category | Technologies |
+|---|---|
+| **Backend** | Node.js, Express.js, TypeScript, NestJS |
+| **Database** | MongoDB (Mongoose), Redis (ioredis) |
+| **Queue** | BullMQ, Bull Board |
+| **Discord Bot** | discord.js v14 (sharded/cluster), discord-api-types |
+| **Front-end** | Vue 3, Vue Router, Vuex, Naive UI, Bulma, Sass |
+| **OAuth** | Passport.js (Discord, NationsGlory) |
+| **Monitoring** | Prometheus (prom-client), Pino (logging) |
+| **Validation** | Zod (@t3-oss/env-core) |
+| **Package Manager** | pnpm 11+ (workspaces) |
+| **Containerization** | Docker, Docker Compose (4 profiles: deps, core, bot, workers) |
+| **CI/CD** | GitLab CI (5 stages: packages → verify → build → image → deploy) |
+| **Deployment** | VPS, Caddy (reverse proxy), automated shell scripts |
+
+---
+
+## 🚀 Deployment & DevOps
+
+- **Multi-profile Docker Compose**: \`deps\` (MongoDB, Redis), \`core\` (API, Web), \`bot\` (Discord bot), \`workers\` (getplayers, scrapdynmap, scrappingapi)
+- **Healthchecks** on all services
+- **Named volumes** for \`node_modules\` persistence
+- **Automated GitLab CI pipeline**: package build → verification → Docker build → registry push → SSH deployment on VPS
+- **Conditional deployment** via change detection (\`changes\` blocks)
+- **Deployment scripts**: \`deploy-aaron.sh\`, \`rollback.sh\`, \`setup-vps.sh\`
+- **Caddy reverse proxy** with multi-domain configuration
+
+---
+
+## 📊 Key Figures
+
+- **3,001** Discord user servers
+- **+218,000** commands executed
+- **~2,030** tracked countries
+- **92,974** potential users
+- **215,217** registered players
+- **18+** supported game servers (colors)
+- **8** BullMQ queues
+- **20+** Discord slash commands
+- **15+** real-time notification types
+
+
+*Project developed for the NationsGlory community — 2021-2026*`,
     images: [
       {
         src: '/src/assets/projects/aaron/connections.png',
-        alt: 'Portfolio Analytics - Dashboard interactif',
+        alt: { fr: 'Portfolio Analytics - Dashboard interactif', en: 'Portfolio Analytics - Interactive dashboard' },
         width: 1000,
         height: 800,
       },
       {
         src: '/src/assets/projects/aaron/pillage.png',
-        alt: 'Portfolio Analytics - Graphiques',
+        alt: { fr: 'Portfolio Analytics - Graphiques', en: 'Portfolio Analytics - Charts' },
         width: 800,
         height: 600,
       },
@@ -256,7 +382,7 @@ This robust REST API serves as the backbone for a sports club management platfor
 ### 💡 Engineering Highlights
 *   **Extensibility by Design:** Used abstract base classes for users and association tables for groups, making it easy to transition from a single-role to a multi-role user system in the future.
 *   **Developer Experience:** Automated the environment setup with Docker and implemented a custom seeding system for rapid testing and demonstration.
-*   **Scalability:** The backend is optimized for complex queries using TypeORM’s QueryBuilder, ensuring performance even as the relationship graph between athletes, sessions, and clubs grows.
+*   **Scalability:** The backend is optimized for complex queries using TypeORM's QueryBuilder, ensuring performance even as the relationship graph between athletes, sessions, and clubs grows.
 
 ---
 
@@ -267,12 +393,12 @@ This robust REST API serves as the backbone for a sports club management platfor
 To view [Frontend code](https://github.com/Bigchef-dev/hackaton-back)`,
     images: [{
       src: '/src/assets/projects/hackaton/homepage.png',
-      alt: 'Hackaton M2 Info - Homepage of sportive dashboard',
+      alt: { fr: 'Hackaton M2 Info - Homepage of sportive dashboard', en: 'Hackathon M2 Info - Sportive dashboard homepage' },
       width: 1000,
       height: 600,
     }, {
       src: '/src/assets/projects/hackaton/swagger.png',
-      alt: 'Hackaton M2 Info - Swagger API Documentation',
+      alt: { fr: 'Hackaton M2 Info - Swagger API Documentation', en: 'Hackathon M2 Info - Swagger API Documentation' },
       width: 800,
       height: 600,
     }],
@@ -291,24 +417,37 @@ To view [Frontend code](https://github.com/Bigchef-dev/hackaton-back)`,
 - **Rôle**: Conception et implémentation backend (NestJS), intégration Mastra, gestion du bot Telegram et architecture de handlers modulaires.  
 - **Technologies**: NestJS, TypeScript, Telegraf, Mastra (@mastra/core), Zod, LibSQL (pour mémoire), pnpm.  
 - **Points clés techniques**: Architecture sans serveur HTTP (createApplicationContext), handlers de commandes et d'événements modulaires, service \`MastraService\` pour orchestrer agents/outils/workflows, système de mémoire conversationnelle persistant, registres dynamiques de handlers.  
-- **Fonctionnalités notables**: commandes Telegram prêtes (\`/start\`, \`/help\`, \`/status\`, \`/ping\`, \`/mastra\`, \`/memory\`, \`/clear_memory\`), traitement de messages via Mastra, persistance automatique des conversations, gestion d’erreurs et médias (voix, images).  
-- **Impact & valeur**: Permet d’exposer des capacités MCP via une interface familière (Telegram), facilite essais d’agents IA et prototypage rapide d’interactions conversationnelles avec mémoire utilisateur persistante.  
+- **Fonctionnalités notables**: commandes Telegram prêtes (\`/start\`, \`/help\`, \`/status\`, \`/ping\`, \`/mastra\`, \`/memory\`, \`/clear_memory\`), traitement de messages via Mastra, persistance automatique des conversations, gestion d'erreurs et médias (voix, images).  
+- **Impact & valeur**: Permet d'exposer des capacités MCP via une interface familière (Telegram), facilite essais d'agents IA et prototypage rapide d'interactions conversationnelles avec mémoire utilisateur persistante.  
 - **Comment démarrer**: installer dépendances puis lancer en dev:
   - \`pnpm install\`
   - \`pnpm start:dev\`
 - **Fichiers clés**: main.ts, app.module.ts, telegram.service.ts, mastra.module.ts, user-memory.service.ts.`,
+    fullDescriptionEn: `**Project Summary**
+
+- **Title**: Telegram MCP Client — NestJS bot for Model Context Protocol operations.  
+- **Tagline**: Modular Telegram bot connecting users to AI agents via MCP for contextual dialogues and memory persistence.  
+- **Role**: Backend design and implementation (NestJS), Mastra integration, Telegram bot management, and modular handler architecture.  
+- **Technologies**: NestJS, TypeScript, Telegraf, Mastra (@mastra/core), Zod, LibSQL (for memory), pnpm.  
+- **Key technical points**: Serverless HTTP architecture (createApplicationContext), modular command and event handlers, \`MastraService\` for orchestrating agents/tools/workflows, persistent conversational memory system, dynamic handler registries.  
+- **Notable features**: Ready Telegram commands (\`/start\`, \`/help\`, \`/status\`, \`/ping\`, \`/mastra\`, \`/memory\`, \`/clear_memory\`), message processing via Mastra, automatic conversation persistence, error handling and media (voice, images).  
+- **Impact & value**: Exposes MCP capabilities through a familiar interface (Telegram), facilitates AI agent testing and rapid prototyping of conversational interactions with persistent user memory.  
+- **Getting started**: install dependencies then run in dev:
+  - \`pnpm install\`
+  - \`pnpm start:dev\`
+- **Key files**: main.ts, app.module.ts, telegram.service.ts, mastra.module.ts, user-memory.service.ts.`,
     images: [{
       src: '/src/assets/projects/telegram-mcp/1.png',
-      alt: 'Telegram MCP Server & Client'
+      alt: { fr: 'Telegram MCP Server & Client', en: 'Telegram MCP Server & Client' }
     }, {
       src: '/src/assets/projects/telegram-mcp/2.png',
-      alt: 'Telegram MCP Server & Client'
+      alt: { fr: 'Telegram MCP Server & Client', en: 'Telegram MCP Server & Client' }
     }, {
       src: '/src/assets/projects/telegram-mcp/3.png',
-      alt: 'Telegram MCP Server & Client'
+      alt: { fr: 'Telegram MCP Server & Client', en: 'Telegram MCP Server & Client' }
     }, {
       src: '/src/assets/projects/telegram-mcp/4.png',
-      alt: 'Telegram MCP Server & Client'
+      alt: { fr: 'Telegram MCP Server & Client', en: 'Telegram MCP Server & Client' }
     }],
     technologies: ['nestjs', 'typescript', 'api', 'docker', 'mcp', 'mistral-ai', 'agentic'],
     category: 'personnel',
@@ -319,9 +458,10 @@ To view [Frontend code](https://github.com/Bigchef-dev/hackaton-back)`,
     title: 'Bio4T - Embedding Search System',
     description: 'Système de recherche d\'embedding avec génération augmentée afin d\'annoter une tâche décrite afin de d\'améliorer les requêtes à un outil de veille scientifique.',
     fullDescription: `Réalisé durant mon Master 1, ce projet de recherche avait pour objectif de développer un système de recherche d'embeddings avec génération augmentée pour améliorer les requêtes à un outil de veille scientifique. Le projet a été conçu pour permettre aux chercheurs de trouver plus efficacement des techniques en bioinformatique.`,
+    fullDescriptionEn: `Completed during my Master 1, this research project aimed to develop an embedding search system with augmented generation to improve queries to a scientific watch tool. The project was designed to help researchers find bioinformatics techniques more efficiently.`,
     images: [{
       src: '/src/assets/projects/bio4t/bio4t.png',
-      alt: 'Bio4T - Interface de recherche d\'embeddings'
+      alt: { fr: 'Bio4T - Interface de recherche d\'embeddings', en: 'Bio4T - Embedding search interface' }
     }],
     technologies: ['python', 'api', 'docker', 'mistral-ai', 'rag', 'neo4j'],
     category: 'universitaire'
@@ -361,15 +501,28 @@ Progress: lecture des fichiers clés terminée — je rédige maintenant le rés
 Fichiers utiles à citer : package.json, readme.md, index.ts, telegram.ts, calendarUpdater.ts.
 
 Souhaitez‑vous que je transforme ce résumé en une entrée prête pour LinkedIn / GitHub Pages (texte court + 2 phrases d'accroche) ?`,
+    fullDescriptionEn: `I will create a brief plan (TODO) to analyze the repository and extract key information (package.json, readme.md, index.ts).
+
+Created 3 todos
+
+I will read package.json, readme.md and index.ts to extract the stack and main features.
+
+Read [](file:///c%3A/Users/mathe/Documents/repos/jamphi/package.json)
+
+Read [](file:///c%3A/Users/mathe/Documents/repos/jamphi/readme.md)
+
+Read [](file:///c%3A/Users/mathe/Documents/repos/jamphi/index.ts)
+
+I mark the initial exploration as complete and move on`,
     images: [{
       src: '/src/assets/projects/jamphi/amphis.png',
-      alt: 'Analyse d\'occupation des salles d\'amphi'
+      alt: { fr: 'Analyse d\'occupation des salles d\'amphi', en: 'Amphitheater occupancy analysis' }
     }, {
       src: '/src/assets/projects/jamphi/entrees.png',
-      alt: 'Analyse des passages dans les salles de cours'
+      alt: { fr: 'Analyse des passages dans les salles de cours', en: 'Classroom traffic analysis' }
     }, {
       src: '/src/assets/projects/jamphi/exel.png',
-      alt: 'Exel pour impression'
+      alt: { fr: 'Exel pour impression', en: 'Excel export for printing' }
     }],
     technologies: ['typescript'],
     gitlab: 'https://gitlab.com/BigChef_/jamphi',
@@ -380,12 +533,13 @@ Souhaitez‑vous que je transforme ce résumé en une entrée prête pour Linked
     title: 'Plateforme de Phoning',
     description: 'Développement d\'une plateforme de phoning avec gestion de concurrence',
     fullDescription: `Développement d'une plateforme de phoning pour une association, avec gestion de la concurrence et des campagnes de communication. Le projet a été réalisé en collaboration avec une équipe de bénévoles, et a permis d'améliorer significativement l'efficacité des campagnes de phoning grâce à une interface intuitive et des fonctionnalités avancées de gestion des contacts et des scripts d'appel.`,
+    fullDescriptionEn: `Development of a phoning platform for an association, with concurrency management and communication campaigns. The project was carried out in collaboration with a team of volunteers, and significantly improved the efficiency of phoning campaigns through an intuitive interface and advanced contact management and call script features.`,
     images: [{
       src: '/src/assets/projects/phone/interface.png',
-      alt: 'Interface utilisateur de la plateforme'
+      alt: { fr: 'Interface utilisateur de la plateforme', en: 'Platform user interface' }
     }, {
       src: '/src/assets/projects/phone/queues.png',
-      alt: 'Gestion des files d\'attente pour les appels'
+      alt: { fr: 'Gestion des files d\'attente pour les appels', en: 'Call queue management' }
     }],
     technologies: ['typescript', 'docker', 'api', 'nestjs'],
     category: 'associatif',
