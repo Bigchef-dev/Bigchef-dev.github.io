@@ -120,6 +120,11 @@ export const SKILLS_DB = {
     color: 'from-teal-500/20 to-teal-500/10',
     border: 'border-teal-300',
   },
+  neo4j: {
+    name: 'Neo4j',
+    color: 'from-teal-500/20 to-teal-500/10',
+    border: 'border-teal-300',
+  },
 } as const;
 
 export type SkillKey = keyof typeof SKILLS_DB;

@@ -11,4 +11,4 @@ export {
   type SkillDefinition,
 } from './skills';
 
-export { projects, type Project, type ProjectImage } from './projects';
+export { projects, type Project, type ProjectImage, type ProjectFile } from './projects';

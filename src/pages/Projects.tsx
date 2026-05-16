@@ -2,7 +2,7 @@ import { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { useLanguage } from '../hooks/useLanguage';
-import { ExternalLink, Code, X, Globe, GitBranch, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ExternalLink, Code, X, Globe, GitBranch, ChevronLeft, ChevronRight, FileText } from 'lucide-react';
 import { SKILLS_DB, projects, type Project } from '../data';
 import type { TranslationKeys } from '../locales/translations';
 
@@ -266,6 +266,19 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
                   Demo
                 </a>
               )}
+              {project.files?.map((file, index) => (
+                <a
+                  key={index}
+                  href={file.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-200 hover:border-teal-300 hover:bg-teal-50 text-sm font-semibold text-gray-700 hover:text-teal-600 transition-all"
+                >
+                  <FileText size={16} />
+                  {file.icon && <span>{file.icon}</span>}
+                  {file.label}
+                </a>
+              ))}
             </div>
           </div>
         </div>

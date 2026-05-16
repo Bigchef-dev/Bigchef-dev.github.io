@@ -11,6 +11,15 @@ export interface ProjectImage {
 }
 
 /**
+ * Interface pour les fichiers personnalisés (PDF, documents, etc.)
+ */
+export interface ProjectFile {
+  label: string;
+  url: string;
+  icon?: string; // emoji ou texte court pour l'icône
+}
+
+/**
  * Interface pour les projets
  */
 export interface Project {
@@ -24,6 +33,7 @@ export interface Project {
   gitlab?: string;
   website?: string;
   demo?: string;
+  files?: ProjectFile[];
   category: 'associatif' | 'universitaire' | 'professionnel' | 'personnel';
 }
 
@@ -365,5 +375,51 @@ To view [Frontend code](https://github.com/Bigchef-dev/hackaton-back)`,
     }],
     technologies: ['nestjs', 'typescript', 'api', 'docker', 'mcp', 'mistral-ai', 'agentic'],
     category: 'personnel'
+  },
+  {
+    id: 6,
+    title: 'Embedding Search System',
+    description: 'Système de recherche d\'embedding avec génération augmentée afin d\'annoter une tâche décrite afin de d\'améliorer les requêtes à un outil de veille scientifique.',
+    fullDescription: `Réalisé durant mon Master 1, ce projet de recherche avait pour objectif de développer un système de recherche d'embeddings avec génération augmentée pour améliorer les requêtes à un outil de veille scientifique. Le projet a été conçu pour permettre aux chercheurs de trouver plus efficacement des techniques en bioinformatique.`,
+    images: [{
+      src: '/src/assets/projects/bio4t/bio4t.png',
+      alt: 'Embedding Search System - Interface de recherche d\'embeddings'
+    }],
+    technologies: ['python', 'api', 'docker', 'mistral-ai', 'rag', 'neo4j'],
+    category: 'universitaire'
+  },
+  {
+    id: 7,
+    title: 'Gepetto, Chatbot IA & Rag',
+    description: 'Gepetto est un chatbot IA avancé pour fournir des réponses précises et contextuelles.',
+    fullDescription: `### Contexte
+    Ce projet à été développé dans le cadre de mon stage de M1.
+
+    Gepetto est un chatbot IA avancé utilisant Retrieval-Augmented Generation (RAG) pour fournir des réponses précises et contextuelles, disponible dans le slack interne.
+    
+    ### Contribution
+
+    Le projet à été initialisé préalablement avec un premier POC, j'ai ensuite pris le relais pour développer une architecture robuste et modulaire, intégrant des fonctionnalités avancées de RAG (Parent-Document-Retrieval, raisonnement).
+    Ce projet m'en a appris énormément sur les systèmes de dialogue basés sur des LLMs, et m'a permis d'explorer en profondeur les techniques de RAG.
+    
+    Ma contribution était initialement prévu pour le support, à été rapidement étendue pour fournir des réponses aux développeurs à partir des documentations techniques des projets.`,
+    images: [{
+      src: '/src/assets/projects/gepetto/conversation.png',
+      alt: 'Interface de chat avec Gepetto'
+    }, {
+      src: '/src/assets/projects/gepetto/ticket.png',
+      alt: 'Réponse de résolution à un ticket nouvellement créé'
+    }, {
+      src: '/src/assets/projects/gepetto/parent-doc-retrieval.png',
+      alt: 'Explication du Parent-Document-Retrieval (hiérarchique) améliorer les réponses de Gepetto'
+    }, {
+      src: '/src/assets/projects/gepetto/grafana.png',
+      alt: 'Suivi des traces sur un board grafana pour monitorer les interactions avec Gepetto et identifier les axes d\'amélioration'
+    }, {
+      src: '/src/assets/projects/gepetto/timeline.png',
+      alt: 'Suivi de l\'éxécution d\'une requête à Gepetto'
+    }],
+    technologies: ['typescript', 'api', 'docker', 'mistral-ai', 'rag', 'langchain', 'agentic', 'sql', 'nestjs'],
+    category: 'professionnel'
   }
 ];
