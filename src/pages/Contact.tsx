@@ -40,11 +40,11 @@ function scrollToSection(sectionId: string) {
   }
 }
 
-export function Home() {
+export function Contact() {
   const { t } = useLanguage();
 
   return (
-    <section id="home" className="min-h-screen pt-20 flex items-center justify-center">
+    <section id="contact" className="min-h-screen pt-20 flex items-center justify-center">
       <div className="max-w-4xl mx-auto px-6 py-20 text-center">
         {/* Tech Circle with name and title */}
         <TechCircle />
@@ -80,15 +80,15 @@ export function Home() {
             <Download size={18} />
             {t('hero.cta_resume')}
           </a>
-          <button
-            onClick={() => scrollToSection('contact')}
-            className="inline-flex items-center gap-2 px-6 py-3 border border-gray-200 text-gray-700 font-semibold rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-all"
-          >
-            <Mail size={18} />
-            {t('hero.cta_contact')}
-          </button>
+          <a href="mailto:matheo.guinche@etudiant.univ-rennes.fr">
+            <button
+              className="inline-flex items-center gap-2 px-6 py-3 border border-gray-200 text-gray-700 font-semibold rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-all"
+            >
+              <Mail size={18} />
+              {t('hero.cta_contact')}
+            </button>
+          </a>
         </div>
-
         {/* Social Links */}
         <div className="flex items-center justify-center gap-4">
           {socialLinks.map((link) => (

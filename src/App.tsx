@@ -1,7 +1,7 @@
 import { LanguageProvider } from './hooks/useLanguage';
 import { Header } from './components/Header';
 import { Background } from './components/Background';
-import { Home } from './pages/Home';
+import { Contact } from './pages/Contact';
 import { Timeline } from './components/Timeline';
 import { Projects } from './pages/Projects';
 import './styles/globals.css';
@@ -13,7 +13,7 @@ function App() {
         <Background />
         <Header />
         <main>
-          <Home />
+          <Contact />
           <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
           <Timeline />
           <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
