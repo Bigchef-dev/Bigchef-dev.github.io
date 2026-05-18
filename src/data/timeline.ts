@@ -10,18 +10,18 @@ export interface TimelineEntry {
 
 const rawTimelineData = [
   {
-    id: 1,
-    year: '2024 - 2026',
-    type: 'education',
-    logo: '/src/assets/UNIRENNES_avatar_1.png',
-    images: ['/src/assets/UNIRENNES_avatar_1.png'],
-  },
-  {
     id: 2,
     year: '2026 - 6 mois',
     type: 'work',
     logo: '/src/assets/orange.png',
     images: ['/src/assets/orange.png'],
+  },
+  {
+    id: 1,
+    year: '2024 - 2026',
+    type: 'education',
+    logo: '/src/assets/UNIRENNES_avatar_1.png',
+    images: ['/src/assets/UNIRENNES_avatar_1.png'],
   },
   {
     id: 3,
