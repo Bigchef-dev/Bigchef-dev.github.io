@@ -45,7 +45,7 @@ export interface Project {
 const rawProjects = [
   {
     id: 1,
-    title: 'Gepetto, Chatbot IA & Rag',
+    title: 'Gepetto, Chatbot IA & RAG',
     description: 'Gepetto est un chatbot IA avancé pour fournir des réponses précises et contextuelles.',
     fullDescription: `### Contexte
 
@@ -85,7 +85,7 @@ const rawProjects = [
       src: '/src/assets/projects/gepetto/timeline.png',
       alt: { fr: 'Suivi de l\'éxécution d\'une requête à Gepetto', en: 'Request execution timeline' }
     }],
-    technologies: ['typescript', 'api', 'docker', 'mistral-ai', 'rag', 'langchain', 'agentic', 'sql', 'nestjs'],
+    technologies: ['typescript', 'api', 'docker', 'openai', 'rag', 'langchain', 'agentic', 'sql', 'nestjs'],
     category: 'professionnel',
     website: "https://blog.digitaleo.fr/marketing-ia-piloter-changement-accompagnement-client"
   },
@@ -472,10 +472,7 @@ To view [Frontend code](https://github.com/Bigchef-dev/hackaton-back)`,
     id: 8,
     title: 'Analyse d\'occupation des salles pour du marketing direct',
     description: 'Analyse d\'occupation des salles de cours pour optimiser les campagnes de marketing direct.',
-    fullDescription: `Je vais créer un bref plan (TODO) pour l'analyse du dépôt puis extraire les infos clés (package.json, readme.md, index.ts).
-
-Created 3 todos
-
+    fullDescription: `
 Je vais lire package.json, readme.md et index.ts pour extraire le stack et les fonctionnalités principales.
 
 Read [](file:///c%3A/Users/mathe/Documents/repos/jamphi/package.json)
@@ -483,15 +480,6 @@ Read [](file:///c%3A/Users/mathe/Documents/repos/jamphi/package.json)
 Read [](file:///c%3A/Users/mathe/Documents/repos/jamphi/readme.md)
 
 Read [](file:///c%3A/Users/mathe/Documents/repos/jamphi/index.ts)
-
-Je marque l'exploration initiale comme terminée et passe à l'analyse détaillée.
-
-Starting: *Parcourir fichiers clés (\`package.json\`,\`readme.md\`,\`index.ts\`)* (2/3)
-
-Progress: lecture des fichiers clés terminée — je rédige maintenant le résumé court.
-
-**Résumé court pour portfolio — jamphi**
-
 - **Projet :** Bot Telegram de planification et d'analyse d'occupation des salles universitaires (gestion de calendriers, exports ICS, rapports d'amphi et passages).  
 - **Rôle / responsabilités typiques :** intégration de calendriers, parsing ICS, génération de rapports par promotion, commandes d'administration Telegram, mises à jour périodiques (cron), persistence MongoDB.  
 - **Stack technique :** Node.js + TypeScript, \`telegraf\` (bot Telegram), \`mongoose\` / MongoDB, parsing ICS (\`ics\`), \`pino\` logging, \`jest\` pour les tests.  
@@ -503,19 +491,12 @@ Progress: lecture des fichiers clés terminée — je rédige maintenant le rés
 Fichiers utiles à citer : package.json, readme.md, index.ts, telegram.ts, calendarUpdater.ts.
 
 Souhaitez‑vous que je transforme ce résumé en une entrée prête pour LinkedIn / GitHub Pages (texte court + 2 phrases d'accroche) ?`,
-    fullDescriptionEn: `I will create a brief plan (TODO) to analyze the repository and extract key information (package.json, readme.md, index.ts).
-
-Created 3 todos
-
-I will read package.json, readme.md and index.ts to extract the stack and main features.
-
+    fullDescriptionEn: `
 Read [](file:///c%3A/Users/mathe/Documents/repos/jamphi/package.json)
 
 Read [](file:///c%3A/Users/mathe/Documents/repos/jamphi/readme.md)
 
-Read [](file:///c%3A/Users/mathe/Documents/repos/jamphi/index.ts)
-
-I mark the initial exploration as complete and move on`,
+Read [](file:///c%3A/Users/mathe/Documents/repos/jamphi/index.ts)`,
     images: [{
       src: '/src/assets/projects/jamphi/amphis.png',
       alt: { fr: 'Analyse d\'occupation des salles d\'amphi', en: 'Amphitheater occupancy analysis' }

@@ -70,7 +70,7 @@ fr: {
   projects: {
     entries: {
       '1': {
-        title: 'Gepetto, Chatbot IA & Rag',
+        title: 'Gepetto, Chatbot IA & RAG',
         description: 'Gepetto est un chatbot IA avancé...',
         fullDescription: '### Contexte\n\nCe projet...',  // long markdown
         imageAlts: ['Interface de chat avec Gepetto', 'Réponse de résolution...', ...],
@@ -211,7 +211,7 @@ fr: {
     },
     entries: {
       '1': {
-        title: 'Gepetto, Chatbot IA & Rag',
+        title: 'Gepetto, Chatbot IA & RAG',
         description: 'Gepetto est un chatbot IA avancé...',
         imageAlts: ['Interface de chat avec Gepetto', 'Réponse de résolution...', ...],
       },

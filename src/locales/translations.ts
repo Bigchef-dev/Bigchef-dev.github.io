@@ -30,7 +30,7 @@ export const translations = {
         '3': {
           title: 'AI Developer Intern',
           company: 'Digitaleo',
-          description: 'End-to-end development of a high-impact conversational agent for various internal departments. Use of **embedding models (Pinecone)**. Interconnection with existing tools. Integration of an MCP server. Continuous improvement by experimenting with new techniques, fine-tuning models, prompt engineering strategies, and ongoing evaluation via LLM-as-a-Judge.\n\n**Technologies:**\n- Embedding models (Pinecone)\n- MCP Server\n- Fine-tuning & Prompt engineering\n- Continuous evaluation via LLM-as-a-Judge\n\n**Skills:** RAG • Orchestration • Re-Ranking',
+          description: 'End-to-end development of a high-impact conversational agent for various internal departments. Use of **embedding models (Pinecone)**. Interconnection with existing tools. Integration of an MCP server. Continuous improvement by experimenting with new techniques, prompt engineering strategies, and ongoing evaluation via LLM-as-a-Judge.\n\n**Technologies:**\n- Embedding models (Pinecone)\n- MCP Server\n- Prompt engineering\n- Continuous evaluation via LLM-as-a-Judge\n\n**Skills:** RAG • Orchestration • Re-Ranking',
         },
         '4': {
           title: 'Bachelor\'s in Computer Science',
@@ -144,12 +144,12 @@ export const translations = {
         '2': {
           title: 'Stagiaire Ingénieur IA',
           company: 'Orange Business',
-          description: 'Analyse des besoins, conception et implémentation de **bout-en-bout** dans une infrastructure existante.\n**Réalisations :**\n- Serveur MCP\n- Automatisation de l\'audit de sécurité\n- Détection de vulnérabilités via **LLM**',
+          description: 'Analyse des besoins, conception et **implémentation d\'un serveur MCP et de pipeline IA de bout-en-bout** dans une infrastructure existante.\n**Réalisations :**\n- Serveur MCP\n- Automatisation de l\'audit de sécurité\n- Détection de vulnérabilités via **LLM**',
         },
         '3': {
           title: 'Stagiaire Développeur IA',
           company: 'Digitaleo',
-          description: 'Développement de bout en bout d\'un agent conversationnel à fort impact pour les différents services internes. Utilisation de modèles **d\'embeddings (Pinecone)**. Interconnexion avec les outils existants. Intégration d\'un serveur MCP. Amélioration continue en expérimentant de nouvelles techniques, fine-tuning des modèles, des stratégies de prompt engineering et l\'évaluation continue via LLM-as-a-Judge.\n\n**Technologies :**\n- Modèles d\'embeddings (Pinecone)\n- Serveur MCP\n- Fine-tuning & Prompt engineering\n- Évaluation continue via LLM-as-a-Judge\n\n**Compétences :** RAG • Orchestration • Re-Ranking',
+          description: 'Développement de bout en bout d\'un agent conversationnel à fort impact pour les différents services internes. Utilisation de modèles **d\'embeddings (Pinecone)**. Interconnexion avec les outils existants. Intégration d\'un serveur MCP. Amélioration continue en expérimentant de nouvelles techniques, des stratégies de prompt engineering et l\'évaluation continue via LLM-as-a-Judge.\n\n**Technologies :**\n- Modèles d\'embeddings (Pinecone)\n- Serveur MCP\n- Prompt engineering\n- Évaluation continue via LLM-as-a-Judge\n\n**Compétences :** RAG • Orchestration • Re-Ranking',
         },
         '4': {
           title: 'Licence Informatique',
@@ -197,7 +197,7 @@ export const translations = {
       },
       entries: {
         '1': {
-          title: 'Gepetto, Chatbot IA & Rag',
+          title: 'Gepetto, Chatbot IA & RAG',
           description: 'Gepetto est un chatbot IA avancé pour fournir des réponses précises et contextuelles.',
           imageAlts: ['Interface de chat avec Gepetto', 'Réponse de résolution à un ticket nouvellement créé', 'Explication du Parent-Document-Retrieval (hiérarchique) améliorer les réponses', 'Suivi des traces sur un board grafana pour monitorer les interactions', 'Suivi de l\'éxécution d\'une requête à Gepetto'],
         },

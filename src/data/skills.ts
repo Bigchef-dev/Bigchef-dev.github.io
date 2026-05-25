@@ -105,6 +105,11 @@ export const SKILLS_DB = {
     color: 'from-teal-500/20 to-teal-500/10',
     border: 'border-teal-300',
   },
+  'openai': {
+    name: 'OpenAI',
+    color: 'from-teal-500/20 to-teal-500/10',
+    border: 'border-teal-300',
+  },
   mcp: {
     name: 'MCP',
     color: 'from-teal-500/20 to-teal-500/10',

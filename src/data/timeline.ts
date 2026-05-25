@@ -54,8 +54,7 @@ const rawTimelineData = [
     id: 7,
     year: '2017',
     type: 'education',
-    logo: '/src/assets/lyceeflaubert.png',
-    images: ['/src/assets/lyceeflaubert.png'],
+    logo: '',
   }
 ] satisfies TimelineEntry[];
 
